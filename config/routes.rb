@@ -1,3 +1,11 @@
+class AppSubdomainConstraint
+  def self.matches?(request)
+    request.subdomain.present? && request.subdomain == "app"
+  end
+end
+
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  constraints AppSubdomainConstraint do
+    resources :users, only: %i[create]
+  end
 end

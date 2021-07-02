@@ -2,6 +2,8 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   MINIMUM_PASSWORD_LENGTH = 6
 
+  include NameOfPerson::AssignableName
+
   has_secure_password
   has_secure_token :auth_token
 
