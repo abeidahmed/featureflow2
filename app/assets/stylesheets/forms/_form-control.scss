@@ -1,0 +1,48 @@
+label {
+  display: inline-block;
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacer-2;
+}
+
+.form-control {
+  width: 100%;
+  padding: 6px $spacer-3;
+  line-height: 20px;
+  font-size: $body-font-size;
+  color: $text-gray-dark;
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  border: $border;
+  border-radius: $border-radius;
+  outline: none;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: $text-blue;
+    box-shadow: 0 0 0 3px rgba($text-blue, 0.3);
+  }
+
+  @supports (-webkit-touch-callout: none) {
+    font-size: $h5-size;
+
+    @include breakpoint(md) {
+      font-size: $body-font-size;
+    }
+  }
+}
+
+.form-control--lg {
+  padding: 10px $spacer-3;
+}
+
+textarea.form-control {
+  padding-top: $spacer-3;
+  padding-bottom: $spacer-3;
+  line-height: 1.5;
+}
+
+::placeholder {
+  color: $text-placeholder;
+  opacity: 1;
+}

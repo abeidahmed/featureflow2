@@ -1,0 +1,22 @@
+// spacing scale
+$spacer: 4px;
+
+$spacer-2: $spacer * 2; // 8px
+$spacer-3: $spacer * 3; // 12px
+$spacer-4: $spacer * 4; // 16px
+$spacer-5: $spacer * 5; // 20px
+$spacer-6: $spacer * 6; // 24px
+$spacer-7: $spacer * 7; // 28px
+$spacer-8: $spacer * 8; // 32px
+$spacer-9: $spacer * 9; // 36px
+$spacer-10: $spacer * 10; // 40px
+$spacer-16: $spacer * 16; // 64px
+
+// breakpoints
+$breakpoints: (
+  xs: 0,
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+);

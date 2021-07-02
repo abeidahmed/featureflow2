@@ -1,0 +1,30 @@
+<%= form_with **@options, data: { controller: "hotwire", action: "turbo:submit-end->hotwire#onSubmit" } do |f| %>
+  <div class="form-group">
+    <%= f.label :name, "Full name" %>
+    <%= f.text_field :name, class: "form-control form-control--lg" %>
+
+    <%= render_component "form/error", error_field: :first_name %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email, "Email address" %>
+    <%= f.email_field :email, class: "form-control form-control--lg" %>
+
+    <%= render_component "form/error", error_field: :email %>
+  </div>
+
+  <div class="form-group">
+    <div class="form-group-header flex items-center">
+      <%= f.label :password %>
+      <span class="ml-1 text-gray">(min. 6 characters)</span>
+    </div>
+
+    <%= f.password_field :password, class: "form-control form-control--lg" %>
+
+    <%= render_component "form/error", error_field: :password %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Let's get started", class: "btn btn--primary btn--block btn--lg" %>
+  </div>
+<% end %>

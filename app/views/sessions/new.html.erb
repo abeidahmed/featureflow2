@@ -1,0 +1,15 @@
+<%= render_component "template/slate" do |c| %>
+  <% c.heading { "Sign in to your account" } %>
+
+  <% c.body do %>
+    <div class="box-body">
+      <%= render_component "user/sign_in_form", url: sessions_path %>
+    </div>
+  <% end %>
+
+  <% c.footer do %>
+    <p class="text-gray text-center">
+      Don't have an account? <%= link_to "Sign up", new_user_path %>
+    </p>
+  <% end %>
+<% end %>

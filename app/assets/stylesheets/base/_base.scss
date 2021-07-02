@@ -1,0 +1,101 @@
+* {
+  box-sizing: border-box;
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px $bg-white inset !important;
+  box-shadow: 0 0 0 30px $bg-white inset !important;
+}
+
+body {
+  font-family: $body-font;
+  color: $text-gray-dark;
+  font-size: $body-font-size;
+  line-height: $body-line-height;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: $font-weight-normal;
+}
+
+a {
+  background-color: transparent;
+  color: $text-blue;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+hr {
+  margin: $spacer-4 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: $border;
+}
+
+form[autocomplete="off"] input[type="text"] {
+  background-position: 150% 50% !important;
+}
+
+ul {
+  margin: 0;
+}
+
+details {
+  display: block;
+
+  &:not([open]) {
+    > *:not(summary) {
+      display: none !important;
+    }
+  }
+}
+
+summary {
+  display: list-item;
+  cursor: pointer;
+}
+
+b,
+strong {
+  font-weight: $font-weight-medium;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+.remix {
+  fill: currentColor;
+}

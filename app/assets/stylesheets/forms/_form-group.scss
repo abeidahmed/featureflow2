@@ -1,0 +1,13 @@
+.form-group {
+  &:not(:first-of-type) {
+    margin-top: $spacer-4;
+  }
+}
+
+.form-group-header {
+  margin-bottom: $spacer-2;
+
+  label {
+    margin-bottom: 0;
+  }
+}

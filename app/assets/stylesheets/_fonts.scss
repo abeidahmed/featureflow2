@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "Inter";
+  font-weight: 400;
+  /* stylelint-disable csstree/validator */
+  src:
+    font-url("Inter-Regular.woff2") format("woff2"),
+    font-url("Inter-Regular.woff") format("woff");
+  font-display: swap;
+  /* stylelint-enable csstree/validator */
+}
+
+@font-face {
+  font-family: "Inter";
+  font-weight: 500;
+  /* stylelint-disable csstree/validator */
+  src:
+    font-url("Inter-Medium.woff2") format("woff2"),
+    font-url("Inter-Medium.woff") format("woff");
+  font-display: swap;
+  /* stylelint-enable csstree/validator */
+}
+
+@font-face {
+  font-family: "Inter";
+  font-weight: 600;
+  /* stylelint-disable csstree/validator */
+  src:
+    font-url("Inter-SemiBold.woff2") format("woff2"),
+    font-url("Inter-SemiBold.woff") format("woff");
+  font-display: swap;
+  /* stylelint-enable csstree/validator */
+}

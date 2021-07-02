@@ -1,0 +1,7 @@
+$display-props: (flex, inline-flex, block, grid);
+
+@each $display in $display-props {
+  .#{$display} {
+    display: $display !important;
+  }
+}

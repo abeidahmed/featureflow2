@@ -1,0 +1,15 @@
+<%= render_component "template/slate" do |c| %>
+  <% c.heading { "Try Feature Flow free for 14 days" } %>
+
+  <% c.body do %>
+    <div class="box-body">
+      <%= render_component "user/sign_up_form", model: @user %>
+    </div>
+  <% end %>
+
+  <% c.footer do %>
+    <p class="text-gray text-center">
+      Already have an account? <%= link_to "Sign in", new_session_path %>
+    </p>
+  <% end %>
+<% end %>
