@@ -1,23 +1,15 @@
-<main class="flex justify-center main--slate">
-  <div class="w-full">
-    <div class="text-center mb-2">
-      <%= image_tag "logo.svg", class: "h-14 w-auto mx-auto" %>
-    </div>
+<%= render_component "template/slate" do |c| %>
+  <% c.heading { "Try Feature Flow free for 14 days" } %>
 
-    <h1 class="h2 text-center">
-      Try Feature Flow free for 14 days
-    </h1>
-
-    <div class="box box--mktg mt-6 shadow-lg max-w-md w-full mx-auto">
-      <div class="box-body">
-        <%= render_component "user/sign_up_form", model: @user %>
-      </div>
+  <% c.body do %>
+    <div class="box-body">
+      <%= render_component "user/sign_up_form", model: @user %>
     </div>
+  <% end %>
 
-    <div class="mt-10">
-      <p class="text-gray text-center">
-        Already have an account? <%= link_to "Sign in", new_session_path %>
-      </p>
-    </div>
-  </div>
-</main>
+  <% c.footer do %>
+    <p class="text-gray text-center">
+      Already have an account? <%= link_to "Sign in", new_session_path %>
+    </p>
+  <% end %>
+<% end %>

@@ -1,0 +1,13 @@
+<%= render_component "application", **@options do %>
+  <div class="w-full">
+    <div class="text-center mb-2">
+      <%= image_tag "logo.svg", class: "h-14 w-auto mx-auto" %>
+    </div>
+
+    <%= heading %>
+
+    <%= body %>
+
+    <%= footer %>
+  </div>
+<% end %>

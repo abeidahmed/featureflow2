@@ -1,23 +1,15 @@
-<main class="flex justify-center main--slate">
-  <div class="w-full">
-    <div class="text-center mb-2">
-      <%= image_tag "logo.svg", class: "h-14 w-auto mx-auto" %>
-    </div>
+<%= render_component "template/slate" do |c| %>
+  <% c.heading { "Sign in to your account" } %>
 
-    <h1 class="h2 text-center">
-      Sign in to your account
-    </h1>
-
-    <div class="box box--mktg mt-6 shadow-lg max-w-md w-full mx-auto">
-      <div class="box-body">
-        <%= render_component "user/sign_in_form", url: sessions_path %>
-      </div>
+  <% c.body do %>
+    <div class="box-body">
+      <%= render_component "user/sign_in_form", url: sessions_path %>
     </div>
+  <% end %>
 
-    <div class="mt-10">
-      <p class="text-gray text-center">
-        Don't have an account? <%= link_to "Sign up", new_user_path %>
-      </p>
-    </div>
-  </div>
-</main>
+  <% c.footer do %>
+    <p class="text-gray text-center">
+      Don't have an account? <%= link_to "Sign up", new_user_path %>
+    </p>
+  <% end %>
+<% end %>
