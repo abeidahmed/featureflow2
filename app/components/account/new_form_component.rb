@@ -1,5 +1,5 @@
-class User
-  class SignInFormComponent < ApplicationComponent
+class Account
+  class NewFormComponent < ApplicationComponent
     def initialize(**options)
       @options = options
     end

@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_02_111342) do
+ActiveRecord::Schema.define(version: 2021_07_02_154001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "name"
+    t.string "subdomain"
+    t.string "cname"
+    t.integer "creator_id"
+    t.string "status", default: "active"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cname"], name: "index_accounts_on_cname"
+    t.index ["creator_id"], name: "index_accounts_on_creator_id"
+    t.index ["status"], name: "index_accounts_on_status"
+    t.index ["subdomain"], name: "index_accounts_on_subdomain", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
