@@ -6,11 +6,6 @@ RSpec.describe "PasswordResets", type: :request do
   end
 
   describe "#create" do
-    context "when the email is present" do
-      it "sends the reset email" do
-      end
-    end
-
     context "when the email is absent" do
       it "returns an error" do
         post password_resets_path, params: { email: "invalid@example.com" }
