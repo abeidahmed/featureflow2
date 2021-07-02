@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
     scope module: :admin do
       resources :onboardings, only: %i[new]
+      resources :accounts, only: %i[create]
     end
   end
 end

@@ -1,5 +1,7 @@
 module Admin
   class OnboardingsController < ApplicationController
-    def new; end
+    def new
+      @account = Account.new
+    end
   end
 end
