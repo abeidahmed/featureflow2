@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  layout "slate"
+
   def new
     @user = User.new
   end
