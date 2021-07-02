@@ -1,0 +1,31 @@
+<%= render_component "template/slate" do |c| %>
+  <% c.heading { "Reset your password" } %>
+
+  <% c.body do %>
+    <div class="box-body">
+      <p class="f5">
+        After resetting your password, you’ll be taken to sign in page, where you need to enter your new credentials.
+      </p>
+
+      <form action="#" class="mt-6">
+        <div class="form-group">
+          <div class="form-group-header flex items-center">
+            <label>Password</label>
+            <span class="ml-1 text-gray">(min. 6 characters)</span>
+          </div>
+
+          <input type="text" value="" name="" id="" class="form-control form-control--lg" />
+        </div>
+
+        <div class="form-group">
+          <label>Password confirmation</label>
+          <input type="text" value="" name="" id="" class="form-control form-control--lg" />
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn--primary btn--lg btn--block">Reset my password</button>
+        </div>
+      </form>
+    </div>
+  <% end %>
+<% end %>
