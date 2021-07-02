@@ -1,5 +1,5 @@
 class AppSubdomainConstraint
   def self.matches?(request)
-    request.subdomain.present? && request.subdomain == "app"
+    request.subdomains.present? && request.subdomains.last == "app"
   end
 end
