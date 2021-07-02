@@ -11,11 +11,13 @@
 .h1,
 .f1 {
   font-size: $h1-size !important;
+  line-height: $lh-condensed;
 }
 
 .h2,
 .f2 {
   font-size: $h2-size !important;
+  line-height: $lh-condensed;
 }
 
 .h3,
