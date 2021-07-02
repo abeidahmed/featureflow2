@@ -12,4 +12,6 @@ class PasswordResetsController < ApplicationController
       render json: { errors: { invalid: ["email address"] } }, status: :unprocessable_entity
     end
   end
+
+  def show; end
 end

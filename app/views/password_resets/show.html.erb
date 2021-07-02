@@ -1,0 +1,18 @@
+<%= render_component "template/slate" do |c| %>
+  <% c.heading { "We’ve sent you a password reset link" } %>
+
+  <% c.body do %>
+    <div class="box-body">
+      <p class="f5">
+        Follow the instructions as described in the mail and you’re good to go. Didn’t receive an email?
+        Check the spam folder or <%= link_to "resend", "#" %>.
+      </p>
+    </div>
+  <% end %>
+
+  <% c.footer do %>
+    <p class="text-gray text-center">
+      <%= link_to "Return back to sign in", new_session_path %>
+    </p>
+  <% end %>
+<% end %>
