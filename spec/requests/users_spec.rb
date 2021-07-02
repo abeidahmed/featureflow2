@@ -21,6 +21,12 @@ RSpec.describe "Users", type: :request do
 
         expect(signed_cookie[:auth_token]).to eq(User.first.auth_token)
       end
+
+      it "redirects to onboardings path" do
+        post users_path, params: { user: valid_attributes }
+
+        expect(response).to redirect_to(new_onboarding_path)
+      end
     end
 
     context "when the request is invalid" do

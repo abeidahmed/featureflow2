@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
     if user.save
       sign_in(user)
+      redirect_to new_onboarding_path
     else
       render json: { errors: user.errors }, status: :unprocessable_entity
     end
