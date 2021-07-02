@@ -1,1 +1,46 @@
-hello
+<main class="flex justify-center main--slate">
+  <div class="w-full">
+    <div class="text-center mb-2">
+      <%= image_tag "logo.svg", class: "h-14 w-auto mx-auto" %>
+    </div>
+
+    <h1 class="h2 text-center">
+      Try Feature Flow free for 14 days
+    </h1>
+
+    <div class="box box--mktg mt-6 shadow-lg max-w-md w-full mx-auto">
+      <div class="box-body">
+        <form action="#">
+          <div class="form-group">
+            <label>Full name</label>
+            <input type="text" value="" name="" id="" class="form-control form-control--lg" />
+          </div>
+
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="text" value="" name="" id="" class="form-control form-control--lg" />
+          </div>
+
+          <div class="form-group">
+            <div class="form-group-header flex items-center">
+              <label>Password</label>
+              <span class="ml-1 text-gray">(min. 6 characters)</span>
+            </div>
+
+            <input type="text" value="" name="" id="" class="form-control form-control--lg" />
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn--primary btn--block btn--lg">Let's get started</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="mt-10">
+      <p class="text-gray text-center">
+        Already have an account? <%= link_to "Sign in", "#" %>
+      </p>
+    </div>
+  </div>
+</main>

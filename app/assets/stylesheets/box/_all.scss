@@ -1,0 +1,14 @@
+.box {
+  width: 100%;
+  border: $border;
+  border-radius: $border-radius;
+  background-color: $bg-white;
+}
+
+.box-body {
+  padding: $spacer-4;
+}
+
+.box--mktg .box-body {
+  padding: $spacer-9;
+}

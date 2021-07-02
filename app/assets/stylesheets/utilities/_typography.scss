@@ -1,0 +1,94 @@
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.h7 {
+  font-weight: $font-weight-medium !important;
+}
+
+.h1,
+.f1 {
+  font-size: $h1-size !important;
+}
+
+.h2,
+.f2 {
+  font-size: $h2-size !important;
+}
+
+.h3,
+.f3 {
+  font-size: $h3-size !important;
+}
+
+.h4,
+.f4 {
+  font-size: $h4-size !important;
+}
+
+.h5,
+.f5 {
+  font-size: $h5-size !important;
+}
+
+.h6,
+.f6 {
+  font-size: $h6-size !important;
+}
+
+.h7,
+.f7 {
+  font-size: $h7-size !important;
+}
+
+// color
+.text-gray {
+  color: $text-gray !important;
+}
+
+// line height
+.leading-5 {
+  line-height: 20px !important;
+}
+
+.leading-6 {
+  line-height: 24px !important;
+}
+
+// alignment
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+// hightlight
+.text-highlight {
+  $highlight-color: #ffea9a;
+
+  background-color: $highlight-color;
+  padding: 0 0.2em;
+  border-radius: 4rem 2rem 4.2rem 1.1rem;
+  box-shadow: 0.2em 0 0 $highlight-color, -0.2em 0 0 $highlight-color;
+}
+
+// screen reader
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

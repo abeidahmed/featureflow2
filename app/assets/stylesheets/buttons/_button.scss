@@ -1,0 +1,135 @@
+.btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 6px 16px;
+  border-radius: 6px;
+  line-height: 20px;
+  font-size: $body-font-size;
+  font-weight: $font-weight-medium;
+  color: $text-gray;
+  border: $border;
+  transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  box-shadow: $shadow-sm;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: $bg-white;
+  cursor: pointer;
+  user-select: none;
+  appearance: none;
+  width: max-content;
+
+  &:hover {
+    text-decoration: none;
+    background-color: $gray-100;
+    transition-duration: 0.1s;
+  }
+
+  &:active {
+    background-color: #f2f1f1;
+    transition: none;
+  }
+
+  .remix {
+    margin-right: $spacer;
+    color: $text-gray-light;
+
+    &:only-child {
+      margin-right: 0;
+    }
+  }
+
+  .dropdown-caret {
+    margin-left: $spacer-2;
+    opacity: 0.8;
+  }
+
+  &:disabled,
+  &.disabled,
+  &[aria-disabled="true"] {
+    cursor: default;
+    box-shadow: none;
+  }
+}
+
+// types
+.btn--primary {
+  $btn-shadow: rgba(27, 31, 35, 0.15);
+
+  background-color: $green-500;
+  color: $text-white;
+  border-color: $btn-shadow;
+
+  // stylelint-disable-next-line no-descending-specificity
+  .remix {
+    color: $text-white;
+    opacity: 0.8;
+  }
+
+  &:hover {
+    background-color: $green-600;
+  }
+
+  &:active {
+    color: $text-white;
+    background-color: $green-500;
+  }
+}
+
+.btn--danger {
+  color: $text-white;
+  background-color: $bg-red;
+  border-color: $border-red;
+
+  &:hover {
+    background-color: $red-700;
+  }
+
+  &:active {
+    background-color: $bg-red;
+  }
+
+  &:disabled,
+  &.disabled,
+  &[aria-disabled="true"] {
+    background-color: $bg-red;
+    opacity: 0.5;
+
+    &:hover {
+      background-color: $bg-red;
+    }
+  }
+}
+
+.btn--danger-outline {
+  color: $text-red;
+
+  &:hover {
+    background-color: $red-700;
+    color: $text-white;
+  }
+
+  &:active {
+    background-color: $bg-red;
+    color: $text-white;
+  }
+}
+
+.btn--sm {
+  padding: 4px 12px;
+  font-size: 13px;
+
+  // stylelint-disable-next-line no-descending-specificity
+  .remix {
+    margin-right: $spacer;
+  }
+}
+
+.btn--lg {
+  padding: 10px $spacer-4;
+}
+
+.btn--block {
+  width: 100%;
+  justify-content: center;
+}
