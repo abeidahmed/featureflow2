@@ -10,30 +10,7 @@
 
     <div class="box box--mktg mt-6 shadow-lg max-w-md w-full mx-auto">
       <div class="box-body">
-        <form action="#">
-          <div class="form-group">
-            <label>Full name</label>
-            <input type="text" value="" name="" id="" class="form-control form-control--lg" />
-          </div>
-
-          <div class="form-group">
-            <label>Email address</label>
-            <input type="text" value="" name="" id="" class="form-control form-control--lg" />
-          </div>
-
-          <div class="form-group">
-            <div class="form-group-header flex items-center">
-              <label>Password</label>
-              <span class="ml-1 text-gray">(min. 6 characters)</span>
-            </div>
-
-            <input type="text" value="" name="" id="" class="form-control form-control--lg" />
-          </div>
-
-          <div class="form-group">
-            <button class="btn btn--primary btn--block btn--lg">Let's get started</button>
-          </div>
-        </form>
+        <%= render_component "user/sign_up_form", model: @user %>
       </div>
     </div>
 
