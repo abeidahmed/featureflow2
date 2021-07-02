@@ -1,4 +1,5 @@
 require_relative "boot"
+require_relative "../lib/account_middleware"
 
 require "rails"
 # Pick the frameworks you want:
@@ -32,6 +33,9 @@ module Featureflow2
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.hosts = nil
+
+    # Middleware
+    config.middleware.use AccountMiddleware
 
     config.generators.system_tests = nil
     config.generators.stylesheets  = false
