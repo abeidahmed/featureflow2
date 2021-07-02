@@ -1,0 +1,109 @@
+---
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: cimg/ruby:3.0.1
+        environment:
+          PG_HOST: localhost
+          PG_USERNAME: postgres
+          RAILS_ENV: test
+          NODE_ENV: test
+          RACK_ENV: test
+      - image: circleci/postgres:12.2
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: featureflow_test2
+    working_directory: ~/featureflow2
+
+    steps:
+      - checkout
+
+      - run:
+          name: Set up assets cache key
+          command: find app/javascript -type f | xargs -d'\n' -P0 -n1 md5sum | sort -k 2 | md5sum > dependency_checksum
+
+      - run:
+          name: Install pg, nodejs, yarn
+          command: |
+            sudo curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
+            curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+            echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+            sudo apt-get update && sudo apt-get install -y libpq-dev postgresql-client nodejs yarn
+      - restore_cache:
+          name: Restore gem cache
+          keys:
+            - gem-cache-v9-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - gem-cache-v9-{{ arch }}-{{ .Branch }}
+            - gem-cache-v9-{{ arch }}
+            - gem-cache-v9
+
+      - restore_cache:
+          name: Restore yarn cache
+          keys:
+            - yarn-cache-v9-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-cache-v9-{{ arch }}-{{ .Branch }}
+            - yarn-cache-v9-{{ arch }}
+            - yarn-cache-v9
+
+      - restore_cache:
+          name: Restore assets cache
+          keys:
+            - assets-cache-v9-{{ checksum "dependency_checksum" }}-{{ arch }}-{{ .Branch }}
+            - assets-cache-v9-{{ checksum "dependency_checksum" }}-{{ arch }}
+            - assets-cache-v9-{{ checksum "dependency_checksum" }}
+
+      - run:
+          name: Install gem dependencies
+          command: |
+            gem install bundler:2.1.4
+            bundle check || bundle install --jobs=6 --retry=3 --path vendor/bundle
+      - run:
+          name: Install yarn dependencies
+          command: yarn install --check-files --frozen-lockfile
+
+      - run:
+          name: Precompile assets
+          command: bundle exec rails assets:precompile
+
+      - save_cache:
+          name: Save gem cache
+          paths:
+            - vendor/bundle
+          key: gem-cache-v9-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+
+      - save_cache:
+          name: Save yarn cache
+          paths:
+            - ~/.cache/yarn
+          key: yarn-cache-v9-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+
+      - save_cache:
+          name: Save assets cache
+          paths:
+            - public/packs-test
+            - public/assets
+            - tmp/cache/webpacker
+            - tmp/cache/assets/sprockets
+          key: assets-cache-v9-{{ checksum "dependency_checksum" }}-{{ arch }}-{{ .Branch }}
+
+      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Copy .env
+          command: cp .sample.env .env
+
+      - run:
+          name: Set up DB
+          command: bundle exec rails db:drop db:prepare --trace
+
+      - run:
+          name: Run tests
+          command: bundle exec rspec
+
+      - run:
+          name: Run linters
+          command: |
+            bundle exec rubocop --parallel
+            npx stylelint "**/*.{css,scss}"
