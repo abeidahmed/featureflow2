@@ -48,7 +48,7 @@ RSpec.describe "PasswordResets", type: :request do
         Timecop.travel(3.hours)
         get password_reset_path(sgid)
 
-        expect(response).to redirect_to(new_password_reset_path)
+        expect(response).to render_template(:not_found)
       end
     end
 
@@ -57,7 +57,7 @@ RSpec.describe "PasswordResets", type: :request do
         sgid = user.signed_id(expires_in: 2.hours, purpose: :invalid)
         get password_reset_path(sgid)
 
-        expect(response).to redirect_to(new_password_reset_path)
+        expect(response).to render_template(:not_found)
       end
     end
   end
@@ -79,7 +79,7 @@ RSpec.describe "PasswordResets", type: :request do
         Timecop.travel(3.hours)
         get edit_password_reset_path(sgid)
 
-        expect(response).to redirect_to(new_password_reset_path)
+        expect(response).to render_template(:not_found)
       end
     end
 
@@ -88,7 +88,7 @@ RSpec.describe "PasswordResets", type: :request do
         sgid = user.signed_id(expires_in: 2.hours, purpose: :invalid)
         get edit_password_reset_path(sgid)
 
-        expect(response).to redirect_to(new_password_reset_path)
+        expect(response).to render_template(:not_found)
       end
     end
   end

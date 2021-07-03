@@ -37,7 +37,7 @@ class PasswordResetsController < ApplicationController
 
   def verify_resetable_user
     @user = User.find_signed(params[:id], purpose: :password_reset)
-    redirect_to new_password_reset_path unless @user
+    render template: "password_resets/not_found" unless @user
   end
 
   def user_params
