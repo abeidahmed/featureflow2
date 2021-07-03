@@ -8,10 +8,10 @@
             General settings
           <% end %>
 
-          <a href="#" class="sidenav-item">
+          <%= active_link_to edit_setting_domains_path, class: "sidenav-item" do %>
             <%= render_svg "draft" %>
             Custom domain
-          </a>
+          <% end %>
 
           <a href="#" class="sidenav-item">
             <%= render_svg "team" %>
