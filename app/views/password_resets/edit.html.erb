@@ -7,25 +7,29 @@
         After resetting your password, you’ll be taken to sign in page, where you need to enter your new credentials.
       </p>
 
-      <form action="#" class="mt-6">
+      <%= form_with model: @user, url: password_reset_path(params[:id]), data: { controller: "hotwire", action: "turbo:submit-end->hotwire#onSubmit" }, class: "mt-6" do |f| %>
         <div class="form-group">
           <div class="form-group-header flex items-center">
-            <label>Password</label>
+            <%= f.label :password %>
             <span class="ml-1 text-gray">(min. 6 characters)</span>
           </div>
 
-          <input type="text" value="" name="" id="" class="form-control form-control--lg" />
+          <%= f.password_field :password, class: "form-control form-control--lg", required: true %>
+
+          <%= render_component "form/error", error_field: :password %>
         </div>
 
         <div class="form-group">
-          <label>Password confirmation</label>
-          <input type="text" value="" name="" id="" class="form-control form-control--lg" />
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, class: "form-control form-control--lg", required: true %>
+
+          <%= render_component "form/error", error_field: :password_confirmation %>
         </div>
 
         <div class="form-group">
-          <button class="btn btn--primary btn--lg btn--block">Reset my password</button>
+          <%= f.submit "Reset my password", class: "btn btn--primary btn--lg btn--block" %>
         </div>
-      </form>
+      <% end %>
     </div>
   <% end %>
 <% end %>

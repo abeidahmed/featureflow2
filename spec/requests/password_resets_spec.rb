@@ -28,6 +28,12 @@ RSpec.describe "PasswordResets", type: :request do
         expect(json.dig(:errors, :invalid)).to be_present
         expect(response).to have_http_status(:unprocessable_entity)
       end
+
+      it "does not send the email" do
+        expect do
+          post password_resets_path, params: { user: { email: "invalid@example.com" } }
+        end.not_to change { ActionMailer::Base.deliveries.count }
+      end
     end
   end
 
