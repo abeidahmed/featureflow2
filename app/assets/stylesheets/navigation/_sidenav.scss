@@ -1,0 +1,36 @@
+.sidenav {
+  flex-shrink: 0;
+}
+
+.sidenav--sticky {
+  position: sticky;
+  top: $spacer-9;
+}
+
+.sidenav-item {
+  display: flex;
+  align-items: center;
+  padding: $spacer-2 $spacer-3;
+  line-height: $lh-default-px;
+  color: $text-gray-dark;
+  border-radius: $border-radius;
+
+  .remix {
+    margin-right: $spacer-3;
+    color: $text-gray-light;
+  }
+
+  &:not(:first-of-type) {
+    margin-top: $spacer-2;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &[aria-current]:not([aria-current="false"]),
+  &[aria-selected="true"] {
+    font-weight: $font-weight-medium;
+    background-color: $bg-gray;
+  }
+}

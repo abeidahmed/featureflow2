@@ -70,6 +70,10 @@
   box-sizing: border-box !important;
 }
 
+.content-box {
+  box-sizing: content-box !important;
+}
+
 // overflow
 .overflow-y-hidden {
   overflow-y: hidden !important;

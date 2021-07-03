@@ -5,9 +5,11 @@
     <% end %>
 
     <nav class="navbar-nav">
-      <a href="#" class="navbar-item">Requested features</a>
+      <%= active_link_to "Requested features", dashboard_path, class: "navbar-item", active: :exclusive %>
+
       <a href="#" class="navbar-item">Roadmap</a>
-      <a href="#" class="navbar-item">Settings</a>
+
+      <%= active_link_to "Settings", setting_root_path, class: "navbar-item" %>
     </nav>
   </div>
 
