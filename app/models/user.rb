@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   validates :first_name, presence: true
   validates :email, presence: true, length: { maximum: 255 }, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL_REGEX } # rubocop:disable Layout/LineLength
-  validates :password, presence: true, length: { minimum: MINIMUM_PASSWORD_LENGTH }, on: :create
+  validates :password, presence: true, length: { minimum: MINIMUM_PASSWORD_LENGTH }, allow_blank: true
 
   private
 

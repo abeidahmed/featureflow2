@@ -13,7 +13,7 @@ RSpec.describe "PasswordResets", type: :request do
         Timecop.freeze(Time.zone.now) do
           sgid = user.signed_id(expires_in: 2.hours, purpose: :password_reset)
           allow(UserMailer).to receive(:with).and_call_original
-          post password_resets_path, params: { email: user.email }
+          post password_resets_path, params: { user: { email: user.email.upcase } }
 
           expect(UserMailer).to have_received(:with).with(user: user, sgid: sgid)
           expect(response).to redirect_to(password_reset_path(sgid))
@@ -23,7 +23,7 @@ RSpec.describe "PasswordResets", type: :request do
 
     context "when the email is invalid" do
       it "returns an error" do
-        post password_resets_path, params: { email: "invalid@example.com" }
+        post password_resets_path, params: { user: { email: "invalid@example.com" } }
 
         expect(json.dig(:errors, :invalid)).to be_present
         expect(response).to have_http_status(:unprocessable_entity)
@@ -106,12 +106,12 @@ RSpec.describe "PasswordResets", type: :request do
       end
     end
 
-    context "when password and password confirmation do not match" do
+    context "when request is invalid" do
       let(:user) { create(:user) }
       let(:sgid) { user.signed_id(expires_in: 2.hours, purpose: :password_reset) }
 
       before do
-        patch password_reset_path(sgid), params: { user: { password: "mamakane", password_confirmation: "invalid" } }
+        patch password_reset_path(sgid), params: { user: { password: "mamakane", password_confirmation: "MAMAKANE" } }
       end
 
       it "does not reset the password" do
@@ -122,50 +122,6 @@ RSpec.describe "PasswordResets", type: :request do
       it "returns an error" do
         expect(json.dig(:errors, :password_confirmation)).to be_present
         expect(response).to have_http_status(:unprocessable_entity)
-      end
-    end
-
-    context "when password is too short" do
-      let(:user) { create(:user) }
-      let(:sgid) { user.signed_id(expires_in: 2.hours, purpose: :password_reset) }
-
-      before do
-        patch password_reset_path(sgid), params: { user: { password: "a", password_confirmation: "a" } }
-      end
-
-      it "does not reset the password" do
-        user.reload
-        expect(user.authenticate("a")).to be_falsy
-      end
-
-      it "returns an error" do
-        expect(json.dig(:errors, :password)).to be_present
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
-    end
-
-    context "when password is blank" do
-      let(:user) { create(:user) }
-      let(:sgid) { user.signed_id(expires_in: 2.hours, purpose: :password_reset) }
-
-      before do
-        patch password_reset_path(sgid), params: { user: { password: "", password_confirmation: "mamakane" } }
-      end
-
-      it "returns an error" do
-        expect(json.dig(:errors, :password)).to be_present
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
-    end
-
-    context "when signed_id is invalid" do
-      let(:user) { create(:user) }
-      let(:sgid) { user.signed_id(expires_in: 2.hours, purpose: :invalid) }
-
-      it "raises an error" do
-        expect do
-          patch password_reset_path(sgid), params: { user: { password: "mamakane", password_confirmation: "mamakane" } }
-        end.to raise_error(ActiveSupport::MessageVerifier::InvalidSignature)
       end
     end
   end

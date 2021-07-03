@@ -4,7 +4,7 @@ class PasswordResetsController < ApplicationController
   def new; end
 
   def create
-    user = User.find_by(email: params[:email])
+    user = User.find_by(email: user_email)
 
     if user
       sgid = user.signed_id(expires_in: 2.hours, purpose: :password_reset)
@@ -24,12 +24,9 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
-    user = User.find_signed!(params[:id], purpose: :password_reset)
+    user = PasswordResetForm.new(user_params.merge(id: params[:id]))
 
-    if user_params[:password].length < 6
-      user.errors.add(:password, "is too short (min. 6 characters)")
-      render json: { errors: user.errors }, status: :unprocessable_entity
-    elsif user.update(user_params)
+    if user.save
       redirect_to new_session_path
     else
       render json: { errors: user.errors }, status: :unprocessable_entity
@@ -45,5 +42,9 @@ class PasswordResetsController < ApplicationController
 
   def user_params
     params.require(:user).permit(:password, :password_confirmation)
+  end
+
+  def user_email
+    params.dig(:user, :email).downcase
   end
 end
