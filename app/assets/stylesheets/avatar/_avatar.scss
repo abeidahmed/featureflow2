@@ -1,0 +1,23 @@
+.avatar {
+  display: block;
+  border-radius: $border-radius;
+  font-weight: $font-weight-medium;
+  color: $text-white;
+}
+
+@mixin avatar-size($size) {
+  width: $size;
+  height: $size;
+}
+
+.avatar--9 {
+  font-size: $h5-size;
+
+  @include avatar-size($spacer-9);
+}
+
+.avatar--10 {
+  font-size: $h5-size;
+
+  @include avatar-size($spacer-10);
+}

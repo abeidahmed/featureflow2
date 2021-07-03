@@ -1,5 +1,6 @@
 class ApplicationComponent < ViewComponent::Base
   include ApplicationHelper
+  include SvgHelper
   include ClassNamesHelper
 
   def initialize(tag: nil, classes: nil, **options)

@@ -1,0 +1,35 @@
+.btn-upvote {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  border: $border;
+  border-radius: $border-radius;
+  padding: 10px $spacer-4;
+  transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+
+  .remix {
+    color: $text-gray-light;
+  }
+
+  .btn-upvote-count {
+    font-size: 12px;
+    font-weight: $font-weight-medium;
+    margin-top: $spacer;
+  }
+
+  &:hover {
+    text-decoration: none;
+    background-color: $gray-100;
+    transition-duration: 0.1s;
+  }
+
+  &:active {
+    background-color: #f2f1f1;
+    transition: none;
+  }
+}
+
+.btn-upvote--lg {
+  padding: $spacer-3 $spacer-5;
+}

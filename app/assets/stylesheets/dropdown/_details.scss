@@ -1,0 +1,30 @@
+.details-reset {
+  > summary {
+    list-style: none;
+  }
+
+  > summary::before {
+    display: none;
+  }
+
+  > summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+.details-overlay[open] > summary::before {
+  position: fixed;
+
+  @include inset-0;
+
+  z-index: 80;
+  display: block;
+  cursor: default;
+  content: " ";
+  background: transparent;
+}
+
+.details-overlay-dark[open] > summary::before {
+  z-index: 99;
+  background: $bg-overlay;
+}

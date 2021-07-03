@@ -1,0 +1,27 @@
+.btn-remix {
+  display: inline-block;
+  line-height: $lh-default-px;
+  color: $text-gray-light;
+  vertical-align: middle;
+  position: relative;
+
+  &:hover {
+    color: $text-gray-dark;
+  }
+}
+
+.btn-close {
+  padding: 0;
+  color: $text-gray-light;
+  background: transparent;
+  border: 0;
+  outline: none;
+
+  &:hover {
+    color: $text-gray-dark;
+  }
+
+  &:active {
+    color: $text-gray;
+  }
+}
