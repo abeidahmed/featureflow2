@@ -22,4 +22,22 @@ RSpec.describe Collaborator, type: :model do
       expect(collaborator.token).to be_present
     end
   end
+
+  describe "counter_cache" do
+    let(:account) { create(:account) }
+
+    it "increments the owners count when owner is created" do
+      create(:collaborator, :owner, account: account)
+
+      account.reload
+      expect(account.owners_count).to eq(1)
+    end
+
+    it "does not increment the owners count when member is created" do
+      create(:collaborator, account: account)
+
+      account.reload
+      expect(account.owners_count).to eq(0)
+    end
+  end
 end

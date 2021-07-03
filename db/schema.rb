@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(version: 2021_07_03_122547) do
     t.string "name"
     t.string "subdomain"
     t.string "cname"
-    t.integer "creator_id"
     t.string "status", default: "active"
+    t.integer "owners_count", default: 0, null: false
+    t.integer "creator_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cname"], name: "index_accounts_on_cname"

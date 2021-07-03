@@ -4,8 +4,9 @@ class CreateAccounts < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :subdomain
       t.string :cname
-      t.integer :creator_id
       t.string :status, default: "active"
+      t.integer :owners_count, null: false, default: 0
+      t.integer :creator_id
 
       t.timestamps
     end
