@@ -3,6 +3,8 @@ class Account < ApplicationRecord
 
   before_validation :normalize_cname
 
+  has_many :collaborators, dependent: :destroy
+  has_many :users, through: :collaborators
   belongs_to :creator, class_name: "User", optional: true
 
   enum status: %w[active inactive].index_with { |role| role }

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :password_resets, only: %i[new create show edit update]
 
     scope module: :admin do
+      root to: "features#index", as: :dashboard
+
       resources :onboardings, only: %i[new]
       resources :accounts, only: %i[create]
     end

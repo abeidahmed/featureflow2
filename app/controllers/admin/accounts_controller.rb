@@ -6,7 +6,7 @@ module Admin
       account.creator = Current.user
 
       if account.save
-        # do
+        redirect_to dashboard_path(script_name: "/#{account.id}")
       else
         render json: { errors: account.errors }, status: :unprocessable_entity
       end

@@ -1,14 +1,11 @@
 require "rails_helper"
 
 RSpec.describe "Admin::Accounts", type: :request do
-  before do
-    host! "app.example.com"
-  end
-
   describe "#create" do
     let(:user) { create(:user) }
 
     before do
+      host! "app.example.com"
       sign_in(user)
     end
 
@@ -19,6 +16,8 @@ RSpec.describe "Admin::Accounts", type: :request do
         expect do
           post accounts_path, params: { account: valid_attributes }
         end.to change(Account, :count).by(1)
+
+        expect(response).to redirect_to(dashboard_path(script_name: "/#{Account.first.id}"))
       end
 
       it "assigns the current_user as the account creator" do
