@@ -1,0 +1,19 @@
+<%= render_component "template/slate" do |c| %>
+  <% c.heading { "Reset your password" } %>
+
+  <% c.body do %>
+    <div class="box-body">
+      <p class="f5">
+        Enter the email address associated with your account and we'll send you a link to reset your password.
+      </p>
+
+      <%= render_component "user/password_reset_new_form", model: User.new, url: password_resets_path, class: "mt-6" %>
+    </div>
+  <% end %>
+
+  <% c.footer do %>
+    <p class="text-gray text-center">
+      <%= link_to "Return back to sign in", new_session_path %>
+    </p>
+  <% end %>
+<% end %>

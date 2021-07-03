@@ -1,0 +1,13 @@
+<%= render_component "template/slate" do |c| %>
+  <% c.heading { "Reset your password" } %>
+
+  <% c.body do %>
+    <div class="box-body">
+      <p class="f5">
+        After resetting your password, you’ll be taken to sign in page, where you need to enter your new credentials.
+      </p>
+
+      <%= render_component "user/password_reset_edit_form", model: @user, url: password_reset_path(params[:id]), class: "mt-6" %>
+    </div>
+  <% end %>
+<% end %>

@@ -34,6 +34,10 @@ module Featureflow2
     # config.eager_load_paths << Rails.root.join("extras")
     config.hosts = nil
 
+    # Sidekiq
+    config.active_job.queue_adapter = :sidekiq
+    config.action_mailer.deliver_later_queue_name = "default"
+
     # Middleware
     config.middleware.use AccountMiddleware
 

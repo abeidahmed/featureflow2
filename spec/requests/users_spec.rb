@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Users", type: :request do
   let(:valid_attributes) { { name: "John Doe", email: "john@example.com", password: "secretpass" } }
-  let(:invalid_attributes) { { name: "John Doe", email: "", password: "secretpass" } }
+  let(:invalid_attributes) { { name: "John Doe", email: "john@example.com", password: "" } }
 
   before do
     host! "app.example.com"
@@ -33,7 +33,7 @@ RSpec.describe "Users", type: :request do
       it "returns an error" do
         post users_path, params: { user: invalid_attributes }
 
-        expect(json.dig(:errors, :email)).to be_present
+        expect(json.dig(:errors, :password)).to be_present
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end

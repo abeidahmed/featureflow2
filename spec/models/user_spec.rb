@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
 
     it { is_expected.not_to allow_value("johndoeexample.com", "johjn@exa").for(:email) }
 
-    it { is_expected.to validate_length_of(:password).is_at_least(6).on(:create) }
+    it { is_expected.to validate_length_of(:password).is_at_least(6) }
   end
 
   describe "callbacks" do
