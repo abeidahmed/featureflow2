@@ -34,27 +34,27 @@
       <% c.heading(variant: "danger") { "Danger zone" } %>
     <% end %>
 
-    <div>
-      <h3 class="h6">Deactivate your account</h3>
+    <div class="divide-y">
+      <div>
+        <h3 class="h6">Deactivate your account</h3>
 
-      <p>
-        This will immediately deactivate your account and will render a 404 for your
-        <%= link_to "public feature requests", "#" %> page.
-      </p>
+        <p class="mt-1">
+          This will immediately deactivate your account and will render a 404 for your
+          <%= link_to "public feature requests", "#" %> page.
+        </p>
 
-      <button class="btn btn--danger-outline mt-3">Deactivate account</button>
-    </div>
+        <button class="btn btn--danger-outline mt-3">Deactivate account</button>
+      </div>
 
-    <hr>
+      <div>
+        <h3 class="h6">Delete your account</h3>
 
-    <div>
-      <h3 class="h6">Delete your account</h3>
+        <p class="mt-1">
+          This will permanently delete your account and will cancel your subscription too. Proceed with caution.
+        </p>
 
-      <p>
-        This will permanently delete your account and will cancel your subscription too. Proceed with caution.
-      </p>
-
-      <button class="btn btn--danger-outline mt-3">Delete account</button>
+        <button class="btn btn--danger-outline mt-3">Delete account</button>
+      </div>
     </div>
   </section>
 <% end %>

@@ -1,0 +1,9 @@
+.border-b {
+  border-bottom: $border !important;
+}
+
+.divide-y > * + * {
+  border-top: $border !important;
+  margin-top: $spacer-4 !important;
+  padding-top: $spacer-4 !important;
+}
