@@ -3,5 +3,6 @@ module Admin
     layout "admin"
 
     include Authenticable
+    include Authorizable
   end
 end

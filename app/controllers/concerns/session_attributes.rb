@@ -6,4 +6,9 @@ module SessionAttributes
   def signout_user
     cookies.delete(:auth_token) if cookies[:auth_token]
   end
+
+  # used by pundit
+  def current_user
+    Current.user
+  end
 end
