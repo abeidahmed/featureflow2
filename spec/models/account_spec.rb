@@ -16,7 +16,7 @@ RSpec.describe Account, type: :model do
 
     it { is_expected.to validate_uniqueness_of(:subdomain).case_insensitive }
 
-    it { is_expected.to validate_exclusion_of(:subdomain).in_array(%w[analyzer blog snbn resources assets cdn static status * www feedback]) }
+    it { is_expected.to validate_exclusion_of(:subdomain).in_array(%w[analyzer blog snbn resources assets cdn static status * www feedback app]) }
 
     it { is_expected.to define_enum_for(:status).with_values(active: "active", inactive: "inactive").backed_by_column_of_type(:string) }
 

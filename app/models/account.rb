@@ -1,5 +1,5 @@
 class Account < ApplicationRecord
-  RESERVED_SUBDOMAINS = %w[analyzer blog snbn resources assets cdn static status * www feedback].freeze
+  RESERVED_SUBDOMAINS = %w[analyzer blog snbn resources assets cdn static status * www feedback app].freeze
 
   before_validation :normalize_cname
 
