@@ -7,7 +7,10 @@ class PasswordResetsController < ApplicationController
     user = User.find_by(email: params[:email])
 
     if user
-      # do
+      sgid = user.signed_id(expires_in: 2.hours, purpose: :password_reset)
+      UserMailer.with(user: user, sgid: sgid).password_reset.deliver_later
+
+      redirect_to password_reset_path(sgid)
     else
       render json: { errors: { invalid: ["email address"] } }, status: :unprocessable_entity
     end
