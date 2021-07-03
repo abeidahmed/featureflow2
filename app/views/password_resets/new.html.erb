@@ -7,16 +7,7 @@
         Enter the email address associated with your account and we'll send you a link to reset your password.
       </p>
 
-      <%= form_with model: User.new, url: password_resets_path, class: "mt-6" do |f| %>
-        <div class="form-group">
-          <%= f.label :email, "Email address" %>
-          <%= f.email_field :email, class: "form-control form-control--lg", required: true %>
-        </div>
-
-        <div class="form-group">
-          <%= f.submit "Send password reset link", class: "btn btn--primary btn--lg btn--block" %>
-        </div>
-      <% end %>
+      <%= render_component "user/password_reset_new_form", model: User.new, url: password_resets_path, class: "mt-6" %>
     </div>
   <% end %>
 
