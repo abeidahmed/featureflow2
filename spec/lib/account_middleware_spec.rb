@@ -29,7 +29,7 @@ RSpec.describe AccountMiddleware do
     middleware = described_class.new(app)
     response = Rack::MockRequest.new(middleware).get(full_path, "REQUEST_PATH" => full_path)
 
-    expect(response.headers["Location"]).to eq("/")
+    expect(response.headers["Location"]).to eq("/not_found")
     expect(Current.account).to eq(nil)
     expect(response["SCRIPT_NAME"]).to eq(nil)
     expect(response["PATH_INFO"]).to eq(nil)

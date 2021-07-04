@@ -11,4 +11,8 @@ class Collaborator < ApplicationRecord
   validates :user, uniqueness: { scope: :account_id, message: "is already in the account" }
 
   delegate :name, :email, to: :user
+
+  def invite_accepted?
+    joined_at.present?
+  end
 end

@@ -13,7 +13,7 @@ RSpec.describe InvitationMailer, type: :mailer do
     end
 
     it "renders the body" do
-      expect(mail.body.encoded).to match(invitation_url(collaborator.token, subdomain: "app"))
+      expect(mail.body.encoded).to match(invitation_url(collaborator.token, subdomain: "app", script_name: "/#{collaborator.account.id}"))
     end
   end
 end
