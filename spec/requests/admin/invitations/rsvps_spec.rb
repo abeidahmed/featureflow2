@@ -145,4 +145,64 @@ RSpec.describe "Admin::Invitations::Rsvps", type: :request do
       end
     end
   end
+
+  describe "#update" do
+    context "when the request is valid" do
+      let(:user) { create(:user) }
+      let(:collaborator) { create(:collaborator, :pending, account: account) }
+
+      it "accepts the invitation" do
+        Timecop.freeze(Time.zone.today) do
+          patch invitation_rsvp_path(collaborator.token), params: { email: user.email, password: user.password }
+          token = collaborator.token
+
+          collaborator.reload
+          collaborator.user.reload
+          expect(collaborator.joined_at).to eq(Time.zone.now)
+          expect(collaborator.user).to eq(user)
+          expect(collaborator.token).not_to eq(token)
+          expect(response).to redirect_to(dashboard_path)
+        end
+      end
+
+      it "creates a new session for the collaborator" do
+        patch invitation_rsvp_path(collaborator.token), params: { email: user.email, password: user.password }
+
+        expect(signed_cookie[:auth_token]).to eq(user.auth_token)
+      end
+    end
+
+    context "when the request is invalid" do
+      let(:collaborator) { create(:collaborator, :pending, account: account) }
+
+      it "returns an error" do
+        patch invitation_rsvp_path(collaborator.token), params: { email: collaborator.email, password: "invalid" }
+
+        expect(json.dig(:errors, :invalid)).to be_present
+      end
+    end
+
+    context "when collaborator has already accepted the invite" do
+      let(:collaborator) { create(:collaborator, account: account) }
+
+      it "raises an error" do
+        expect do
+          patch invitation_rsvp_path(collaborator.token), params: { email: collaborator.email, password: collaborator.user.password }
+        end.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    context "when account is misused" do
+      let(:new_account) { create(:account) }
+      let(:collaborator) { create(:collaborator, :pending, account: account) }
+
+      it "raises an error" do
+        switch_account(new_account)
+
+        expect do
+          patch invitation_rsvp_path(collaborator.token), params: { email: collaborator.email, password: collaborator.user.password }
+        end.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
 end

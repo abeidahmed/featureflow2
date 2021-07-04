@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       resources :collaborators, only: %i[create]
 
       resources :invitations, only: %i[show] do
-        resource :rsvp, only: %i[new create edit], module: :invitations
+        resource :rsvp, only: %i[new create edit update], module: :invitations
       end
 
       namespace "settings", as: :setting do
