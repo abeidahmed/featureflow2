@@ -27,7 +27,7 @@ class CollaboratorInviteForm
   def invite
     if valid?
       user.save
-      user.collaborators.create!(role: role)
+      register_collaborator_and_send_invitation
       true
     else
       false
@@ -38,5 +38,10 @@ class CollaboratorInviteForm
 
   def collaborator_uniqueness
     errors.add(:email, "is already registered in the account") if user.collaborator_exists?(Current.account)
+  end
+
+  def register_collaborator_and_send_invitation
+    collaborator = user.collaborators.create!(role: role)
+    InvitationMailer.with(collaborator: collaborator).account_invitation.deliver_later
   end
 end
