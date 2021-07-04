@@ -9,5 +9,9 @@ FactoryBot.define do
     trait :owner do
       role { "owner" }
     end
+
+    trait :pending do
+      joined_at { nil }
+    end
   end
 end

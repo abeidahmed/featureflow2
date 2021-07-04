@@ -9,4 +9,6 @@ class Collaborator < ApplicationRecord
   enum role: %w[owner editor].index_with { |role| role }
 
   validates :user, uniqueness: { scope: :account_id, message: "is already in the account" }
+
+  delegate :name, :email, to: :user
 end

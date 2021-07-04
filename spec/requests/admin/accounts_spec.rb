@@ -5,7 +5,7 @@ RSpec.describe "Admin::Accounts", type: :request do
     let(:user) { create(:user) }
 
     before do
-      host! "app.example.com"
+      switch_account
       sign_in(user)
     end
 

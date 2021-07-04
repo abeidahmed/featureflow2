@@ -3,6 +3,7 @@ class User < ApplicationRecord
   MINIMUM_PASSWORD_LENGTH = 6
 
   include NameOfPerson::AssignableName
+  include Tenant
 
   has_secure_password
   has_secure_token :auth_token

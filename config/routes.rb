@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
       resources :onboardings, only: %i[new]
       resources :accounts, only: %i[create]
+      resources :collaborators, only: %i[create]
 
       namespace "settings", as: :setting do
         root to: "general_settings#index"

@@ -12,8 +12,12 @@ module Requests
       ActionDispatch::Cookies::CookieJar.build(request, cookies.to_hash).signed
     end
 
-    def switch_account(account)
-      host! "example.com/#{account.id}"
+    def switch_account(account = nil)
+      if account
+        host! "app.example.com/#{account.id}"
+      else
+        host! "app.example.com"
+      end
     end
   end
 end
