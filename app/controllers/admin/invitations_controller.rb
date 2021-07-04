@@ -3,11 +3,16 @@ module Admin
     layout "slate"
 
     skip_before_action :authenticate_user
+    skip_after_action :verify_authorized
 
     def show
-      skip_authorization
       @collaborator = Collaborator.find_by(token: params[:id])
+      verify_collaborator
+    end
 
+    private
+
+    def verify_collaborator
       if @collaborator
         redirect_to dashboard_path(script_name: "/#{@collaborator.account.id}") if @collaborator.invite_accepted?
       else
