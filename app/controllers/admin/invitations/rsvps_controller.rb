@@ -8,7 +8,6 @@ module Admin
 
       def create
         set_collaborator!
-        raise ActiveRecord::RecordNotFound if @collaborator.invite_accepted?
 
         if valid_collaborator?
           persist_collaborator
@@ -26,13 +25,17 @@ module Admin
 
       def update
         set_collaborator!
-        raise ActiveRecord::RecordNotFound if @collaborator.invite_accepted?
 
         auth = Authentication.new(params)
         if auth.authenticated?
-          persist_collaborator(auth.user) # TODO: also delete the previous user?
-          sign_in(@collaborator.user)
-          redirect_to dashboard_path
+          begin
+            persist_collaborator(auth.user) # TODO: also delete the previous user?
+            sign_in(@collaborator.user)
+            redirect_to dashboard_path
+          rescue ActiveRecord::RecordInvalid => _e
+            @collaborator.errors.add(:invalid, "login attempt. User is already in the account")
+            render json: { errors: @collaborator.errors }, status: :unprocessable_entity
+          end
         else
           render json: { errors: { invalid: ["credentials"] } }, status: :unprocessable_entity
         end
@@ -46,6 +49,7 @@ module Admin
 
       def set_collaborator!
         @collaborator = Collaborator.find_by!(token: params[:invitation_id])
+        raise ActiveRecord::RecordNotFound if @collaborator.invite_accepted?
       end
 
       def collaborator_params
@@ -58,9 +62,11 @@ module Admin
       end
 
       def persist_collaborator(user = nil)
-        @collaborator.user = user if user
-        @collaborator.joined_at = Time.zone.now
-        @collaborator.regenerate_token # this should be at the last for update to happen in one query
+        @collaborator.transaction do
+          @collaborator.user = user if user
+          @collaborator.joined_at = Time.zone.now
+          @collaborator.regenerate_token # this should be at the last for update to happen in one query
+        end
       end
     end
   end

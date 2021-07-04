@@ -192,6 +192,17 @@ RSpec.describe "Admin::Invitations::Rsvps", type: :request do
       end
     end
 
+    context "when personating other collaborator" do
+      let(:collaborator) { create(:collaborator, :pending, account: account) }
+      let(:existing_collaborator) { create(:collaborator, account: account) }
+
+      it "returns an error" do
+        patch invitation_rsvp_path(collaborator.token), params: { email: existing_collaborator.email, password: existing_collaborator.user.password }
+
+        expect(json.dig(:errors, :invalid)).to be_present
+      end
+    end
+
     context "when account is misused" do
       let(:new_account) { create(:account) }
       let(:collaborator) { create(:collaborator, :pending, account: account) }
