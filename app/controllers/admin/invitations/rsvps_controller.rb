@@ -12,6 +12,7 @@ module Admin
 
         if valid_collaborator?
           @collaborator.update(joined_at: Time.zone.now)
+          @collaborator.regenerate_token
           sign_in(@collaborator.user)
           redirect_to dashboard_path
         else

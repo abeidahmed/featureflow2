@@ -54,12 +54,14 @@ RSpec.describe "Admin::Invitations::Rsvps", type: :request do
       it "accepts the invitation" do
         Timecop.freeze(Time.zone.today) do
           post invitation_rsvp_path(collaborator.token), params: { collaborator: valid_attributes }
+          token = collaborator.token
 
           collaborator.reload
           collaborator.user.reload
           expect(collaborator.joined_at).to eq(Time.zone.now)
           expect(collaborator.name).to eq("Hawa")
           expect(collaborator.user.authenticate("hellothere")).to eq(collaborator.user)
+          expect(collaborator.token).not_to eq(token)
           expect(response).to redirect_to(dashboard_path)
         end
       end

@@ -5,28 +5,12 @@
 
   <% c.body do %>
     <div class="box-body">
-      <div class="form-group">
-        <label>Full name</label>
-        <input type="text" value="" name="" id="" class="form-control form-control--lg" />
-      </div>
-
-      <div class="form-group">
-        <label>Email address</label>
-        <input type="text" value="" name="" id="" class="form-control form-control--lg" />
-      </div>
-
-      <div class="form-group">
-        <div class="form-group-header flex items-center">
-          <label>Password</label>
-          <span class="ml-1 text-gray">(min. 6 characters)</span>
-        </div>
-
-        <input type="text" value="" name="" id="" class="form-control form-control--lg" />
-      </div>
-
-      <div class="form-group">
-        <button class="btn btn--primary btn--lg btn--block">Join account</button>
-      </div>
+      <%= render_component "user/sign_up_form",
+        model: @collaborator,
+        url: invitation_rsvp_path(params[:invitation_id]),
+        method: :post,
+        button_text: "Join account"
+      %>
     </div>
   <% end %>
 <% end %>
