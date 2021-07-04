@@ -2,7 +2,7 @@ module Admin
   class InvitationsController < ApplicationController
     layout "slate"
 
-    skip_before_action :authenticate_user
+    skip_before_action :authenticate_user, :authenticate_collaborator, :affirm_collaborator
     skip_after_action :verify_authorized
 
     def show
