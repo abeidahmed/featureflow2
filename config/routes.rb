@@ -15,6 +15,10 @@ Rails.application.routes.draw do
       resources :accounts, only: %i[create]
       resources :collaborators, only: %i[create]
 
+      resources :invitations, only: %i[show] do
+        resource :rsvp, only: %i[new edit], module: :invitations
+      end
+
       namespace "settings", as: :setting do
         root to: "general_settings#index"
 
