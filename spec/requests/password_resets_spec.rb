@@ -15,7 +15,7 @@ RSpec.describe "PasswordResets", type: :request do
           allow(UserMailer).to receive(:with).and_call_original
           post password_resets_path, params: { user: { email: user.email.upcase } }
 
-          expect(UserMailer).to have_received(:with).with(user: user, sgid: sgid)
+          expect(UserMailer).to have_received(:with).with(user: user, sgid: sgid, return_url: nil)
           expect(response).to redirect_to(password_reset_path(sgid))
         end
       end

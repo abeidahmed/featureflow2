@@ -7,7 +7,12 @@
         After resetting your password, you’ll be taken to sign in page, where you need to enter your new credentials.
       </p>
 
-      <%= render_component "user/password_reset_edit_form", model: @user, url: password_reset_path(params[:id]), class: "mt-6" %>
+      <%= render_component "user/password_reset_edit_form",
+        model: @user,
+        url: password_reset_path(params[:id]),
+        class: "mt-6",
+        return_url: params[:return_url]
+      %>
     </div>
   <% end %>
 <% end %>

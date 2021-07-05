@@ -8,7 +8,8 @@
       <%= render_component "user/sign_in_form",
         url: invitation_rsvp_path(@collaborator.token),
         method: :patch,
-        button_text: "Join account"
+        button_text: "Join account",
+        return_url: invitation_url(@collaborator.token, subdomain: "app", script_name: "/#{@collaborator.account.id}")
       %>
     </div>
   <% end %>
