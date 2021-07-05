@@ -22,7 +22,15 @@
       <% if current_member? %>
         <%= link_to "Remove yourself", collaborator_revocations_path(@collaborator), class: "f7" %>
       <% else %>
-        <%= link_to "Remove", "#", class: "f7" %>
+        <details data-controller="details lazy" data-lazy-url-value="<%= collaborator_removals_path(@collaborator) %>" class="details details-reset details-overlay details-overlay-dark">
+          <summary data-action="click->lazy#fetch" class="f7 link--primary">
+            Remove
+          </summary>
+
+          <div data-lazy-target="container" class="modal box">
+            <div class="loader"></div>
+          </div>
+        </details>
       <% end %>
     </div>
   </div>

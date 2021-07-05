@@ -14,8 +14,10 @@ Rails.application.routes.draw do
       resources :onboardings, only: %i[new]
       resources :accounts, only: %i[index create]
       resource :accounts, only: %i[destroy]
+
       resources :collaborators, only: %i[create destroy] do
         resource :revocations, only: %i[show], module: :collaborators
+        resource :removals, only: %i[show], module: :collaborators
       end
 
       resources :invitations, only: %i[show] do

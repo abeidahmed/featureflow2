@@ -1,0 +1,29 @@
+.link--muted {
+  color: $text-gray !important;
+
+  &:hover {
+    color: $text-gray-dark !important;
+  }
+}
+
+.link--primary {
+  color: $text-blue !important;
+
+  &:hover {
+    text-decoration: underline !important;
+  }
+}
+
+.no-underline {
+  text-decoration: none !important;
+
+  &:hover {
+    text-decoration: none !important;
+  }
+}
+
+.overlay-link {
+  position: absolute;
+
+  @include inset-0;
+}
