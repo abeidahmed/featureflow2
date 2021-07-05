@@ -1,4 +1,4 @@
-$display-props: (flex, inline-flex, block, grid);
+$display-props: (flex, inline-flex, block, grid, inline-block);
 
 @each $display in $display-props {
   .#{$display} {

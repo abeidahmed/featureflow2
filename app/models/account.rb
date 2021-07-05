@@ -1,8 +1,10 @@
 class Account < ApplicationRecord
-  RESERVED_SUBDOMAINS = %w[analyzer blog snbn resources assets cdn static status * www feedback].freeze
+  RESERVED_SUBDOMAINS = %w[analyzer blog snbn resources assets cdn static status * www feedback app].freeze
 
   before_validation :normalize_cname
 
+  has_many :collaborators, dependent: :destroy
+  has_many :users, through: :collaborators
   belongs_to :creator, class_name: "User", optional: true
 
   enum status: %w[active inactive].index_with { |role| role }

@@ -5,7 +5,7 @@ RSpec.describe "Users", type: :request do
   let(:invalid_attributes) { { name: "John Doe", email: "john@example.com", password: "" } }
 
   before do
-    host! "app.example.com"
+    switch_account
   end
 
   describe "#create" do

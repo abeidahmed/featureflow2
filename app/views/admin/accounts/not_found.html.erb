@@ -1,0 +1,21 @@
+<%= render_component "template/slate" do |c| %>
+  <% c.heading { "Oops, we couldn't find the account" } %>
+
+  <% c.body do %>
+    <div class="box-body f5">
+      <p>
+        The account that you were looking for might have been deleted or is no longer in use.
+      </p>
+
+      <div class="mt-3">
+        <p class="h5">Here's what you can do next:</p>
+
+        <ul class="mt-2">
+          <li>Contact the owner of the account</li>
+          <li><%= link_to "Sign in to your Feature Flow account", new_session_path(script_name: nil) %></li>
+          <li><%= link_to "Create a new account", new_onboarding_path(script_name: nil) %></li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+<% end %>

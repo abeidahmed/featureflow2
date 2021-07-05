@@ -1,0 +1,21 @@
+<%= render_component "template/slate" do |c| %>
+  <% c.heading do %>
+    Join <span class="text-highlight"><%= @collaborator.account.name %></span> in Feature Flow
+  <% end %>
+
+  <% c.body do %>
+    <div class="box-body">
+      <%= link_to "Make a new login with my email", new_invitation_rsvp_path(@collaborator.token), class: "btn btn--block btn--lg" %>
+
+      <div class="flex items-center my-4">
+        <hr class="flex-1">
+
+        <span class="text-gray-light px-4">Or, if you've used Feature Flow before</span>
+
+        <hr class="flex-1">
+      </div>
+
+      <%= link_to "Link with my existing account", edit_invitation_rsvp_path(@collaborator.token), class: "btn btn--block btn--lg" %>
+    </div>
+  <% end %>
+<% end %>

@@ -8,8 +8,4 @@ module ApplicationHelper
       render component_klass.new(**options), &block
     end
   end
-
-  def humanize_select_keys_for(values)
-    values.map { |key, _value| [key.humanize, key] }
-  end
 end

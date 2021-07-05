@@ -1,0 +1,136 @@
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+  width: 200px;
+  padding: 6px 0;
+  margin-top: $spacer;
+  background-clip: padding-box;
+  border: $border;
+  border-radius: $border-radius;
+  box-shadow: $shadow-md;
+  background-color: $bg-white;
+  list-style: none;
+
+  &::before,
+  &::after {
+    position: absolute;
+    display: inline-block;
+    content: "";
+  }
+
+  &::before {
+    border: $spacer-2 solid transparent;
+    border-bottom-color: $border-gray;
+  }
+
+  &::after {
+    border: 7px solid transparent;
+    border-bottom-color: $bg-white;
+  }
+}
+
+.dropdown-menu--lg {
+  width: 256px;
+}
+
+.dropdown-header {
+  padding-left: $spacer-3;
+  margin-bottom: 6px;
+  font-size: $h6-size;
+  text-transform: uppercase;
+  font-weight: $font-weight-medium;
+  color: $text-gray-light;
+}
+
+.dropdown-item {
+  color: $text-gray;
+  line-height: $lh-default-px;
+  padding: 6px $spacer-3;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  .remix {
+    margin-right: $spacer-3;
+    color: $text-gray-light;
+  }
+
+  &:hover {
+    text-decoration: none;
+    background-color: $bg-gray-light;
+  }
+}
+
+.dropdown-item-value {
+  display: flex;
+  align-items: center;
+  flex: 1 1 0%;
+}
+
+.dropdown-item-check {
+  flex-shrink: 0;
+}
+
+.dropdown-item-check .remix {
+  margin-right: 0;
+  color: $green-500;
+}
+
+.dropdown-item:not([aria-checked="true"]) {
+  .dropdown-item-check {
+    display: none;
+  }
+}
+
+.dropdown-separator {
+  margin: $spacer-2 $spacer-3;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: $border;
+}
+
+.dropdown-item-btn {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+}
+
+// positions
+.dropdown-menu--sw {
+  right: 0;
+  left: auto;
+
+  &::before {
+    top: -$spacer-4;
+    right: 9px;
+    left: auto;
+  }
+
+  &::after {
+    top: -14px;
+    right: 10px;
+    left: auto;
+  }
+}
+
+.dropdown-menu--se {
+  &::before {
+    top: -$spacer-4;
+    left: 9px;
+  }
+
+  &::after {
+    top: -14px;
+    left: 10px;
+  }
+}

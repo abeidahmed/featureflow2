@@ -11,7 +11,7 @@ class AccountMiddleware
       if account = Account.find_by(id: account_id) # rubocop:disable Style/GuardClause
         Current.account = account
       else
-        return [302, { "Location" => "/" }, []]
+        return [302, { "Location" => "/not_found" }, []]
       end
 
       request.script_name  = "/#{account_id}"

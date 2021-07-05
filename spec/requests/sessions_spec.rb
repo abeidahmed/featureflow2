@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Sessions", type: :request do
   before do
-    host! "app.example.com"
+    switch_account
   end
 
   describe "#create" do

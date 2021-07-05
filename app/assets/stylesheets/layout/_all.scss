@@ -1,3 +1,30 @@
+.main-content {
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: $spacer-9 $spacer-8;
+}
+
+.main-content--fluid {
+  max-width: 100%;
+}
+
+.main-content--constrained {
+  max-width: 48rem;
+}
+
+.content-wrapper {
+  width: 100%;
+  height: calc(100vh - #{$header-height});
+  overflow-y: auto;
+}
+
+.section {
+  &:not(:first-of-type) {
+    margin-top: $spacer-7;
+  }
+}
+
 .main--slate {
   padding-top: $spacer-16;
   padding-bottom: $spacer-16;

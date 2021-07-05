@@ -1,0 +1,37 @@
+<div class="content-wrapper bg-gray-light">
+  <main class="main-content">
+    <div class="flex -mx-6">
+      <aside class="w-64 content-box px-6">
+        <nav class="sidenav sidenav--sticky">
+          <%= active_link_to setting_root_path, class: "sidenav-item", active: :exclusive do %>
+            <%= render_svg "cog" %>
+            General settings
+          <% end %>
+
+          <%= active_link_to edit_setting_domains_path, class: "sidenav-item" do %>
+            <%= render_svg "draft" %>
+            Custom domain
+          <% end %>
+
+          <%= active_link_to setting_collaborators_path, class: "sidenav-item" do %>
+            <%= render_svg "team" %>
+            Team members
+          <% end %>
+
+          <a href="#" class="sidenav-item">
+            <%= render_svg "dollar" %>
+            Billing
+          </a>
+        </nav>
+      </aside>
+
+      <div class="px-6 flex-1">
+        <div class="box">
+          <div class="box-body">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

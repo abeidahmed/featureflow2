@@ -8,7 +8,7 @@ class PasswordResetsController < ApplicationController
 
     if user
       sgid = user.signed_id(expires_in: 2.hours, purpose: :password_reset)
-      UserMailer.with(user: user, sgid: sgid).password_reset.deliver_later
+      UserMailer.with(user: user, sgid: sgid, return_url: params[:return_url]).password_reset.deliver_later
       redirect_to password_reset_path(sgid)
     else
       render json: { errors: { invalid: ["email address"] } }, status: :unprocessable_entity
@@ -27,7 +27,7 @@ class PasswordResetsController < ApplicationController
     user = PasswordResetForm.new(user_params.merge(id: params[:id]))
 
     if user.save
-      redirect_to new_session_path
+      redirect_to params[:return_url].presence || new_session_path
     else
       render json: { errors: user.errors }, status: :unprocessable_entity
     end

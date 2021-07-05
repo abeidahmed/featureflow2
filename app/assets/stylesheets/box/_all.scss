@@ -5,10 +5,55 @@
   background-color: $bg-white;
 }
 
+.box-header {
+  border-bottom: $border;
+  display: flex;
+  justify-content: space-between;
+  padding: $spacer-2 $spacer-4;
+
+  .box-title {
+    font-size: $h5-size;
+    font-weight: $font-weight-medium;
+  }
+
+  .box-close-btn {
+    margin-right: -$spacer-4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 $spacer-3;
+    color: $text-gray-light;
+    background: transparent;
+    border: 0;
+    outline: none;
+
+    &:hover {
+      color: $text-gray-dark;
+    }
+
+    &:active {
+      color: $text-gray;
+    }
+  }
+}
+
 .box-body {
   padding: $spacer-4;
 }
 
-.box--mktg .box-body {
+.box-footer {
+  padding: $spacer-2 $spacer-4;
+  border-top: $border;
+}
+
+.box--mktg > .box-body {
   padding: $spacer-9;
+}
+
+.box--spacious > .box-body {
+  padding: $spacer-6;
+}
+
+.box--condensed > .box-body {
+  padding: $spacer-3;
 }

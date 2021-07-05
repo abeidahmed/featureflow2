@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "PasswordResets", type: :request do
   before do
-    host! "app.example.com"
+    switch_account
   end
 
   describe "#create" do
@@ -13,9 +13,9 @@ RSpec.describe "PasswordResets", type: :request do
         Timecop.freeze(Time.zone.now) do
           sgid = user.signed_id(expires_in: 2.hours, purpose: :password_reset)
           allow(UserMailer).to receive(:with).and_call_original
-          post password_resets_path, params: { user: { email: user.email.upcase } }
+          post password_resets_path, params: { user: { email: user.email.upcase }, return_url: new_user_path }
 
-          expect(UserMailer).to have_received(:with).with(user: user, sgid: sgid)
+          expect(UserMailer).to have_received(:with).with(user: user, sgid: sgid, return_url: new_user_path)
           expect(response).to redirect_to(password_reset_path(sgid))
         end
       end
@@ -101,14 +101,21 @@ RSpec.describe "PasswordResets", type: :request do
 
   describe "#update" do
     context "when the request is valid" do
+      let(:user) { create(:user) }
+      let(:sgid) { user.signed_id(expires_in: 2.hours, purpose: :password_reset) }
+
       it "resets the password" do
-        user = create(:user)
-        sgid = user.signed_id(expires_in: 2.hours, purpose: :password_reset)
         patch password_reset_path(sgid), params: { user: { password: "mamakane", password_confirmation: "mamakane" } }
 
         user.reload
         expect(user.authenticate("mamakane")).to eq(user)
         expect(response).to redirect_to(new_session_path)
+      end
+
+      it "returns to the return_url if it has any" do
+        patch password_reset_path(sgid), params: { user: { password: "mamakane", password_confirmation: "mamakane" }, return_url: new_user_path }
+
+        expect(response).to redirect_to(new_user_path)
       end
     end
 

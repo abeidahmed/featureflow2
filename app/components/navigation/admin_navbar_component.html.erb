@@ -1,0 +1,69 @@
+<header class="navbar">
+  <div class="flex items-center">
+    <%= link_to "#", class: "flex items-center justify-center flex-shrink-0" do %>
+      <%= image_tag "logo.svg", class: "navbar-logo" %>
+    <% end %>
+
+    <nav class="navbar-nav">
+      <%= active_link_to "Requested features", dashboard_path, class: "navbar-item", active: :exclusive %>
+
+      <a href="#" class="navbar-item">Roadmap</a>
+
+      <%= active_link_to "Settings", setting_root_path, class: "navbar-item" %>
+    </nav>
+  </div>
+
+  <div class="flex items-center space-x-3">
+    <a href="#" class="btn btn--sm">
+      <%= render_svg "external-link", size: 16 %>
+      <span>View site</span>
+    </a>
+
+    <details data-controller="details" class="dropdown details-reset details-overlay">
+      <summary aria-haspopup="true" class="p-2 flex items-center btn-remix">
+        <%= render_svg "plus" %>
+        <span class="dropdown-caret"></span>
+      </summary>
+
+      <ul class="dropdown-menu dropdown-menu--sw">
+        <li>
+          <a href="#" class="dropdown-item">
+            <%= render_svg "article" %>
+            Add a new feature
+          </a>
+        </li>
+
+        <li>
+          <%= link_to new_onboarding_path, class: "dropdown-item" do %>
+            <%= render_svg "repository" %>
+            Add a new account
+          <% end %>
+        </li>
+      </ul>
+    </details>
+
+    <details class="dropdown details-reset details-overlay">
+      <summary aria-haspopup="true">
+        <%= render_component "avatar", user: @current_user %>
+      </summary>
+
+      <ul class="dropdown-menu dropdown-menu--sw">
+        <li>
+          <a class="dropdown-item" href="#url">
+            <%= render_svg "user-setting" %>
+            Profile settings
+          </a>
+        </li>
+
+        <li class="dropdown-separator"></li>
+
+        <li>
+          <a class="dropdown-item" href="#url">
+            <%= render_svg "logout" %>
+            Sign out
+          </a>
+        </li>
+      </ul>
+    </details>
+  </div>
+</header>

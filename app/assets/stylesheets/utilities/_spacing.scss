@@ -14,6 +14,11 @@
   margin-right: $spacer-2 !important;
 }
 
+.my-4 {
+  margin-top: $spacer-4 !important;
+  margin-bottom: $spacer-4 !important;
+}
+
 .mt-1 {
   margin-top: $spacer !important;
 }
@@ -85,6 +90,10 @@
   margin-right: -$spacer-6 !important;
 }
 
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
 // padding
 .p-2 {
   padding: $spacer-2 !important;
@@ -112,6 +121,11 @@
 
 .pl-2 {
   padding-left: $spacer-2 !important;
+}
+
+.px-4 {
+  padding-left: $spacer-4 !important;
+  padding-right: $spacer-4 !important;
 }
 
 .py-0 {

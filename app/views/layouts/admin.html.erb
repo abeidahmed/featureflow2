@@ -9,7 +9,8 @@
     <%= javascript_pack_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <body>
+  <body class="h-screen overflow-y-hidden">
+    <%= render_component "navigation/admin_navbar", current_user: Current.user %>
     <%= yield %>
   </body>
 </html>

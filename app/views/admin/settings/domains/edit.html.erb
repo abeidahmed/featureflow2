@@ -1,0 +1,31 @@
+<%= render layout: "admin/settings/layout" do %>
+  <section class="section">
+    <%= render_component "subhead" do |c| %>
+      <% c.heading { "Manage your custom domain" } %>
+
+      <% c.description(tag: "p") do %>
+        CNAME should not contain spaces, http:// or https://. By default we’ll try to force ssl your feature requests page.
+      <% end %>
+    <% end %>
+
+    <div>
+      <h3 class="h6">Feature flow provided domain:</h3>
+
+      <%= link_to "#", class: "inline-flex items-center" do %>
+        https://example.com
+        <%= render_svg "external-link", size: 16, class: "ml-1 text-gray-light" %>
+      <% end %>
+    </div>
+
+    <form action="#" class="mt-6 max-w-sm w-full">
+      <div class="form-group">
+        <label>CNAME</label>
+
+        <div class="flex items-center">
+          <input type="text" value="" name="" id="" placeholder="Eg. subdomain.example.com" class="form-control" />
+          <button class="btn btn--primary ml-3">Save</button>
+        </div>
+      </div>
+    </form>
+  </section>
+<% end %>

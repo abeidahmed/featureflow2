@@ -1,0 +1,41 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $header-height;
+  box-shadow: $shadow-sm;
+  padding-left: $spacer-8;
+  padding-right: $spacer-8;
+  background-color: $bg-white;
+  position: relative;
+  z-index: 10;
+}
+
+.navbar-logo {
+  height: 32px;
+  width: auto;
+}
+
+.navbar-nav {
+  margin-left: $spacer-8;
+}
+
+.navbar-item {
+  color: $text-gray-light;
+  line-height: $lh-default-px;
+  font-weight: $font-weight-medium;
+
+  &:hover {
+    color: $text-gray-dark;
+    text-decoration: none;
+  }
+
+  &:not(:first-of-type) {
+    margin-left: $spacer-6;
+  }
+
+  &[aria-current]:not([aria-current="false"]),
+  &[aria-selected="true"] {
+    color: $text-gray-dark;
+  }
+}

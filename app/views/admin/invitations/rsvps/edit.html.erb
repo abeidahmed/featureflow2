@@ -1,0 +1,22 @@
+<%= render_component "template/slate" do |c| %>
+  <% c.heading do %>
+    Join <span class="text-highlight"><%= @collaborator.account.name %></span> in Feature Flow
+  <% end %>
+
+  <% c.body do %>
+    <div class="box-body">
+      <%= render_component "user/sign_in_form",
+        url: invitation_rsvp_path(@collaborator.token),
+        method: :patch,
+        button_text: "Join account",
+        return_url: invitation_url(@collaborator.token, subdomain: "app", script_name: "/#{@collaborator.account.id}")
+      %>
+    </div>
+  <% end %>
+
+  <% c.footer do %>
+    <p class="text-center text-gray">
+      Don't have an account? <%= link_to "Sign up", new_invitation_rsvp_path(@collaborator.token) %>
+    </p>
+  <% end %>
+<% end %>
