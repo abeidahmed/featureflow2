@@ -1,5 +1,5 @@
-<details data-controller="details" class="details details-overlay details-overlay-dark">
-  <summary class="btn btn--primary">
+<details data-controller="details focus" class="details details-overlay details-overlay-dark">
+  <summary data-action="click->focus#focusElement" class="btn btn--primary">
     Invite a collaborator
   </summary>
 
@@ -20,7 +20,7 @@
       <div class="box-body">
         <div class="form-group">
           <%= f.label :name %>
-          <%= f.text_field :name, class: "form-control", autocomplete: "off", required: true %>
+          <%= f.text_field :name, class: "form-control", data: { focus_target: "focusable" }, autocomplete: "off", required: true %>
 
           <%= render_component "form/error", error_field: :name %>
         </div>

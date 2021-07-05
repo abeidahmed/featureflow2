@@ -1,4 +1,4 @@
-import { formErrorHandler } from "../helpers/formErrorHandler";
+import { formErrorHandler } from "../helpers";
 
 export default class extends ApplicationController {
   static targets = ["errorContainer"];
