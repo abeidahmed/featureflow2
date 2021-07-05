@@ -21,4 +21,8 @@ class Collaborator < ApplicationRecord
   def invite_pending?
     joined_at.nil?
   end
+
+  def unrevokable?
+    account.owners_count == 1 && owner? && Current.user == user
+  end
 end

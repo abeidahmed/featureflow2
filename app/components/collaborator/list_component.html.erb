@@ -20,7 +20,7 @@
       <span class="mx-1">&middot;</span>
 
       <% if current_member? %>
-        <%= link_to "Remove yourself", "#", class: "f7" %>
+        <%= link_to "Remove yourself", collaborator_revocations_path(@collaborator), class: "f7" %>
       <% else %>
         <%= link_to "Remove", "#", class: "f7" %>
       <% end %>

@@ -13,7 +13,9 @@ Rails.application.routes.draw do
 
       resources :onboardings, only: %i[new]
       resources :accounts, only: %i[create]
-      resources :collaborators, only: %i[create]
+      resources :collaborators, only: %i[create] do
+        resource :revocations, only: %i[show], module: :collaborators
+      end
 
       resources :invitations, only: %i[show] do
         resource :rsvp, only: %i[new create edit update], module: :invitations
