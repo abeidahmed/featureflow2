@@ -2,6 +2,8 @@ class Collaborator
   class ListComponent < ApplicationComponent
     with_collection_parameter :collaborator
 
+    attr_reader :current_user
+
     def initialize(collaborator:, current_user:, **options)
       @collaborator = collaborator
       @current_user = current_user
@@ -11,7 +13,7 @@ class Collaborator
     private
 
     def current_member?
-      @collaborator.user == @current_user
+      @collaborator.user == current_user
     end
 
     def rolify_text

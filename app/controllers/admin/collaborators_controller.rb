@@ -14,6 +14,22 @@ module Admin
       end
     end
 
+    def update
+      @collaborator = Collaborator.find(params[:id])
+      authorize @collaborator, :rolify?
+
+      if @collaborator.owner?
+        @collaborator.editor!
+      else
+        @collaborator.owner!
+      end
+
+      respond_to do |format|
+        format.html { redirect_to setting_collaborators_path }
+        format.turbo_stream
+      end
+    end
+
     def destroy
       @collaborator = Collaborator.find(params[:id])
       authorize @collaborator

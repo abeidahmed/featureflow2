@@ -1,0 +1,32 @@
+<div data-lazy-target="htmlResponse">
+  <div class="box-header">
+    <h2 class="box-title"><%= box_title %></h2>
+
+    <button type="button" class="box-close-btn" data-action="details#hide">
+      <%= render_svg "close" %>
+    </button>
+  </div>
+
+  <div class="box-body">
+    <% if @collaborator.owner? %>
+      <p>
+        Are you sure you want to <span class="text-highlight">demote <%= current_member? ? "yourself" : @collaborator.name %></span>
+        to editor? <%= current_member? ? "You" : @collaborator.name %> can no longer manage account settings, team members,
+        subscriptions, etc.
+      </p>
+    <% else %>
+      <p>
+        Are you sure you want to <span class="text-highlight">promote <%= @collaborator.name %></span> to owner? Owners
+        can manage everything inside an account, including subscriptions, team members, account cancellations, etc.
+      </p>
+    <% end %>
+  </div>
+
+  <div class="box-footer flex items-center justify-end">
+    <button type="button" data-action="details#hide" class="btn">Cancel</button>
+
+    <%= form_with url: collaborator_path(@collaborator), method: :patch, class: "ml-3" do |f| %>
+      <%= f.submit button_text, class: "btn #{button_class}" %>
+    <% end %>
+  </div>
+</div>

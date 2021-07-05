@@ -1,0 +1,3 @@
+<%= turbo_stream.replace dom_id(@collaborator) do %>
+  <%= render_component "collaborator/list", collaborator: @collaborator, current_user: Current.user %>
+<% end %>

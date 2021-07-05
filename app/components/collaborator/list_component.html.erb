@@ -15,9 +15,19 @@
     <p class="text-gray"><%= @collaborator.email %></p>
 
     <div class="flex items-center">
-      <%= link_to rolify_text, "#", class: "f7" %>
+      <% if policy(@collaborator).rolify? %>
+        <details data-controller="details lazy" data-lazy-url-value="<%= collaborator_roles_path(@collaborator) %>" class="details details-reset details-overlay details-overlay-dark">
+          <summary data-action="click->lazy#fetch" class="f7 link--primary">
+            <%= rolify_text %>
+          </summary>
 
-      <span class="mx-1">&middot;</span>
+          <div data-lazy-target="container" class="modal box">
+            <div class="loader"></div>
+          </div>
+        </details>
+
+        <span class="mx-1">&middot;</span>
+      <% end %>
 
       <% if current_member? %>
         <%= link_to "Remove yourself", collaborator_revocations_path(@collaborator), class: "f7" %>
