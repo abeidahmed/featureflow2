@@ -1,0 +1,22 @@
+<%= render_component "template/slate" do |c| %>
+  <% c.heading do %>
+    Remove <span class="text-highlight">yourself</span> from the team?
+  <% end %>
+
+  <% c.body do %>
+    <div class="box-body">
+      <p class="f5 text-center">
+        Are you sure you want to exit from the team? You will no longer have access to this account unless and until
+        someone invites your again.
+      </p>
+
+      <div class="flex space-x-3 mt-6">
+        <%= link_to "Nevermind, I'll stay", setting_collaborators_path, class: "btn btn--block btn--lg" %>
+
+        <%= form_with url: collaborator_path(@collaborator, format: :html), method: :delete, class: "w-full" do |f| %>
+          <%= f.submit "Yes, exit team", class: "btn btn--danger-outline btn--block btn--lg" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

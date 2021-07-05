@@ -12,8 +12,8 @@ Rails.application.routes.draw do
       root to: "features#index", as: :dashboard
 
       resources :onboardings, only: %i[new]
-      resources :accounts, only: %i[create]
-      resources :collaborators, only: %i[create] do
+      resources :accounts, only: %i[index create]
+      resources :collaborators, only: %i[create destroy] do
         resource :revocations, only: %i[show], module: :collaborators
       end
 

@@ -9,7 +9,7 @@ module Features
     end
 
     def switch_account(account)
-      Capybara.app_host = "http://example.com/#{account&.id}"
+      Capybara.app_host = "http://app.example.com/#{account.id}"
     end
   end
 end

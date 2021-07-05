@@ -14,6 +14,18 @@ module Admin
       end
     end
 
+    def destroy
+      @collaborator = Collaborator.find(params[:id])
+      authorize @collaborator
+      return head :forbidden if @collaborator.unrevokable?
+
+      @collaborator.destroy
+      respond_to do |format|
+        format.html { redirect_to accounts_path(script_name: nil) }
+        format.turbo_stream
+      end
+    end
+
     private
 
     def collaborator_params

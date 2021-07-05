@@ -1,0 +1,20 @@
+<%= render_component "template/slate" do |c| %>
+  <% c.heading do %>
+    You <span class="text-highlight">cannot</span> exit the team
+  <% end %>
+
+  <% c.body do %>
+    <div class="box-body">
+      <p class="f5 text-center">
+        You are the only owner in the team and hence you cannot exit. You can either promote your colleague to owner and
+        leave the team or else delete the account if you no longer need it.
+      </p>
+
+      <div class="mt-6 flex items-center space-x-3">
+        <%= link_to "Nevermind, I'll stay", setting_collaborators_path, class: "btn btn--block btn--lg" %>
+
+        <button class="btn btn--danger-outline btn--block btn--lg">Delete account</button>
+      </div>
+    </div>
+  <% end %>
+<% end %>

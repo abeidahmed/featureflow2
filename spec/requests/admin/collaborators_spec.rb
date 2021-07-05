@@ -31,4 +31,30 @@ RSpec.describe "Admin::Collaborators", type: :request do
       end
     end
   end
+
+  describe "#destroy" do
+    context "when there is only one owner in the team" do
+      it "does not remove the current owner" do
+        collaborator = create(:collaborator, :owner, user: user, account: account)
+        create(:collaborator, account: account)
+
+        expect do
+          delete collaborator_path(collaborator)
+        end.not_to change { account.collaborators.count }
+
+        expect(response).to have_http_status(:forbidden)
+      end
+    end
+
+    context "when request is valid" do
+      it "removes the user" do
+        collaborator = create(:collaborator, user: user, account: account)
+        create(:collaborator, :owner, account: account)
+
+        expect do
+          delete collaborator_path(collaborator)
+        end.to change { account.collaborators.count }.by(-1)
+      end
+    end
+  end
 end

@@ -2,6 +2,10 @@ module Admin
   class AccountsController < ApplicationController
     skip_before_action :authenticate_collaborator, :affirm_collaborator
 
+    def index
+      skip_policy_scope
+    end
+
     def create
       account = Account.new(account_params)
       authorize account
