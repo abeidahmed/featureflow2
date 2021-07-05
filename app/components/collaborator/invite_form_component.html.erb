@@ -8,7 +8,8 @@
       url: collaborators_path,
       data: {
         controller: "hotwire",
-        action: "turbo:submit-end->hotwire#onSubmit turbo:submit-end->details#hideAfterSuccess"
+        action: "turbo:submit-end->hotwire#onSubmit turbo:submit-end->details#hideAfterSuccess",
+        form_reset: "true"
       } do |f|
     %>
       <div class="box-header">
