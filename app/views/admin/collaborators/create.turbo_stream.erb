@@ -1,0 +1,3 @@
+<%= turbo_stream.prepend "collaborator-list" do %>
+  <%= render_component "collaborator/list", collaborator: @collaborator.record, current_user: Current.user %>
+<% end %>

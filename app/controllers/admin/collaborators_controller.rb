@@ -5,7 +5,10 @@ module Admin
       @collaborator = CollaboratorInviteForm.new(collaborator_params)
 
       if @collaborator.invite
-        # do
+        respond_to do |format|
+          format.html { redirect_to setting_collaborators_path }
+          format.turbo_stream
+        end
       else
         render json: { errors: @collaborator.errors }, status: :unprocessable_entity
       end

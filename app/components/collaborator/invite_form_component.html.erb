@@ -1,0 +1,73 @@
+<details data-controller="details" class="details details-overlay details-overlay-dark">
+  <summary class="btn btn--primary">
+    Invite a collaborator
+  </summary>
+
+  <div class="modal box">
+    <%= form_with model: CollaboratorInviteForm.new,
+      url: collaborators_path,
+      data: {
+        controller: "hotwire",
+        action: "turbo:submit-end->hotwire#onSubmit turbo:submit-end->details#hideAfterSuccess"
+      } do |f|
+    %>
+      <div class="box-header">
+        <h2 class="box-title">Invite a collaborator</h2>
+
+        <button type="button" data-action="details#hide" class="box-close-btn"><%= render_svg "close" %></button>
+      </div>
+
+      <div class="box-body">
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control", autocomplete: "off", required: true %>
+
+          <%= render_component "form/error", error_field: :name %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :email, "Email address" %>
+          <%= f.email_field :email, class: "form-control", autocomplete: "off", required: true %>
+
+          <%= render_component "form/error", error_field: :email %>
+        </div>
+
+        <div class="form-group">
+          <span class="h6 mb-2 inline-block">Collaborator's role</span>
+
+          <div class="flex items-center space-x-3">
+            <div class="box box--condensed">
+              <label class="box-body w-full mb-0 leading-4">
+                <div class="flex items-center justify-between">
+                  <h5 class="h6">Owner</h5>
+                  <%= f.radio_button :role, "owner" %>
+                </div>
+
+                <span class="f7 text-gray mt-1 inline-block">Can manage subscriptions, account cancellations, etc.</span>
+              </label>
+            </div>
+
+            <div class="box box--condensed">
+              <label class="box-body w-full mb-0 leading-4">
+                <div class="flex items-center justify-between">
+                  <h5 class="h6">Editor</h5>
+                  <%= f.radio_button :role, "editor", checked: true %>
+                </div>
+
+                <span class="f7 text-gray mt-1 inline-block">Can edit, delete, update, create feature requests, etc</span>
+              </label>
+            </div>
+          </div>
+
+          <%= render_component "form/error", error_field: :role %>
+        </div>
+      </div>
+
+      <div class="box-footer flex items-center justify-end">
+        <button type="button" data-action="details#hide" class="btn">Cancel</button>
+
+        <%= f.submit "Send invitation", class: "btn btn--primary ml-3" %>
+      </div>
+    <% end %>
+  </div>
+</details>

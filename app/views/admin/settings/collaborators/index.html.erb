@@ -11,15 +11,13 @@
         <div class="search-form-icon"><%= render_svg "search" %></div>
       </div>
 
-      <div>
-        <button class="btn btn--primary">Invite a collaborator</button>
-      </div>
+      <%= render_component "collaborator/invite_form", current_user: Current.user, account: Current.account %>
     </div>
 
     <div class="mt-6">
       <h2 class="h6">These people are currently in your team</h2>
 
-      <div class="mt-5 grid grid-cols-2 gap-4">
+      <div id="collaborator-list" class="mt-5 grid grid-cols-2 gap-4">
         <%= render_component "collaborator/list", collection: @collaborators, current_user: Current.user %>
       </div>
     </div>

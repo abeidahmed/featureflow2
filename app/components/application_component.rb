@@ -2,6 +2,7 @@ class ApplicationComponent < ViewComponent::Base
   include ApplicationHelper
   include SvgHelper
   include ClassNamesHelper
+  include Pundit
 
   def initialize(tag: nil, classes: nil, **options)
     @tag = tag

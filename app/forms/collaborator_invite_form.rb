@@ -34,6 +34,10 @@ class CollaboratorInviteForm
     end
   end
 
+  def record
+    user.find_collaborator(Current.account)
+  end
+
   private
 
   def collaborator_uniqueness
