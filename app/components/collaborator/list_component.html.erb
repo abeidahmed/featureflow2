@@ -1,0 +1,29 @@
+<div id="<%= dom_id(@collaborator) %>" class="col-span-1 flex">
+  <%= render_component "avatar", user: @collaborator.user, size: 10 %>
+
+  <div class="ml-3">
+    <div class="flex items-center">
+      <h3 class="h6"><%= @collaborator.name %></h3>
+
+      <% if @collaborator.invite_pending? %>
+        <span class="ml-2 tooltip tooltip-n flex items-center justify-center" aria-label="Pending invite">
+          <%= render_svg "info", variant: "solid", size: 16, class: "text-gray-light" %>
+        </span>
+      <% end %>
+    </div>
+
+    <p class="text-gray"><%= @collaborator.email %></p>
+
+    <div class="flex items-center">
+      <%= link_to rolify_text, "#", class: "f7" %>
+
+      <span class="mx-1">&middot;</span>
+
+      <% if current_member? %>
+        <%= link_to "Remove yourself", "#", class: "f7" %>
+      <% else %>
+        <%= link_to "Remove", "#", class: "f7" %>
+      <% end %>
+    </div>
+  </div>
+</div>

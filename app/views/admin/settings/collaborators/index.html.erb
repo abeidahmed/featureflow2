@@ -1,0 +1,27 @@
+<%= render layout: "admin/settings/layout" do %>
+  <section class="section">
+    <%= render_component "subhead" do |c| %>
+      <% c.heading { "Manage your team members" } %>
+    <% end %>
+
+    <div class="flex items-center justify-between">
+      <div class="search-form max-w-sm w-full">
+        <input type="text" value="<%= params[:query] %>" class="form-control" placeholder="Search members by name, email...">
+
+        <div class="search-form-icon"><%= render_svg "search" %></div>
+      </div>
+
+      <div>
+        <button class="btn btn--primary">Invite a collaborator</button>
+      </div>
+    </div>
+
+    <div class="mt-6">
+      <h2 class="h6">These people are currently in your team</h2>
+
+      <div class="mt-5 grid grid-cols-2 gap-4">
+        <%= render_component "collaborator/list", collection: @collaborators, current_user: Current.user %>
+      </div>
+    </div>
+  </section>
+<% end %>

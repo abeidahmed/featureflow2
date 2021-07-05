@@ -1,0 +1,21 @@
+.search-form {
+  position: relative;
+
+  .form-control {
+    padding-left: $spacer-10;
+  }
+}
+
+.search-form-icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  padding-left: $spacer-3;
+  pointer-events: none;
+
+  .remix {
+    color: $text-placeholder;
+  }
+}

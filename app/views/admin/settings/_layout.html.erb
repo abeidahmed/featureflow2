@@ -13,10 +13,10 @@
             Custom domain
           <% end %>
 
-          <a href="#" class="sidenav-item">
+          <%= active_link_to setting_collaborators_path, class: "sidenav-item" do %>
             <%= render_svg "team" %>
             Team members
-          </a>
+          <% end %>
 
           <a href="#" class="sidenav-item">
             <%= render_svg "dollar" %>

@@ -15,4 +15,8 @@ class Collaborator < ApplicationRecord
   def invite_accepted?
     joined_at.present?
   end
+
+  def invite_pending?
+    joined_at.nil?
+  end
 end
