@@ -52,4 +52,24 @@ RSpec.describe "Admin::Accounts", type: :request do
       end
     end
   end
+
+  describe "#destroy" do
+    let(:user) { create(:user) }
+    let(:account) { create(:account) }
+
+    before do
+      switch_account(account)
+      sign_in(user)
+    end
+
+    it "deletes the account" do
+      create(:collaborator, :owner, user: user, account: account)
+
+      expect do
+        delete accounts_path
+      end.to change(Account, :count).by(-1)
+
+      expect(response).to redirect_to(accounts_path(script_name: nil))
+    end
+  end
 end

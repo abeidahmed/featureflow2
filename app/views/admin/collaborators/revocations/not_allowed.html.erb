@@ -13,7 +13,9 @@
       <div class="mt-6 flex items-center space-x-3">
         <%= link_to "Nevermind, I'll stay", setting_collaborators_path, class: "btn btn--block btn--lg" %>
 
-        <button class="btn btn--danger-outline btn--block btn--lg">Delete account</button>
+        <%= form_with url: accounts_path, method: :delete, class: "w-full" do |f| %>
+          <%= f.submit "Delete account", class: "btn btn--danger-outline btn--block btn--lg" %>
+        <% end %>
       </div>
     </div>
   <% end %>

@@ -37,7 +37,9 @@ RSpec.describe "AccountExits", type: :feature do
     end
 
     it "has the delete account button" do
-      expect(page).to have_text("Delete account")
+      click_button "Delete account"
+
+      expect(page).to have_current_path(accounts_path(script_name: nil))
     end
   end
 end
