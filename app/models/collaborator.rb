@@ -10,6 +10,8 @@ class Collaborator < ApplicationRecord
 
   validates :user, uniqueness: { scope: :account_id, message: "is already in the account" }
 
+  scope :alphabetically, -> { order("users.first_name": :asc).references(:user) }
+
   delegate :name, :email, to: :user
 
   def invite_accepted?

@@ -40,4 +40,15 @@ RSpec.describe Collaborator, type: :model do
       expect(account.owners_count).to eq(0)
     end
   end
+
+  describe ".alphabetically" do
+    it "orders the collaborators alphabetically" do
+      user1 = create(:user, name: "Rik")
+      user2 = create(:user, name: "Abeid")
+      collaborator1 = create(:collaborator, user: user1)
+      collaborator2 = create(:collaborator, user: user2)
+
+      expect(described_class.alphabetically.includes(:user).ids).to eq([collaborator2.id, collaborator1.id])
+    end
+  end
 end
