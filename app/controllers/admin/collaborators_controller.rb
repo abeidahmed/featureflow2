@@ -24,6 +24,8 @@ module Admin
         @collaborator.owner!
       end
 
+      Collaborator.touch_all
+
       respond_to do |format|
         format.html { redirect_to setting_collaborators_path }
         format.turbo_stream
