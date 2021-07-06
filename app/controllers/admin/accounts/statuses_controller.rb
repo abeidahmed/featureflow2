@@ -10,7 +10,7 @@ module Admin
           Current.account.active!
         end
 
-        redirect_to setting_root_path
+        redirect_to setting_root_path, success: { message: "Account deactivated" }
       end
     end
   end

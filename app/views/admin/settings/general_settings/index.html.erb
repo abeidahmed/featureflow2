@@ -42,16 +42,7 @@
     <% end %>
 
     <div class="divide-y">
-      <div>
-        <h3 class="h6">Deactivate your account</h3>
-
-        <p class="mt-1">
-          This will immediately deactivate your account and will render a 404 for your
-          <%= link_to "public feature requests", "#" %> page.
-        </p>
-
-        <button class="btn btn--danger-outline mt-3">Deactivate account</button>
-      </div>
+      <%= render_component "account/deactivate" %>
 
       <div>
         <h3 class="h6">Delete your account</h3>
