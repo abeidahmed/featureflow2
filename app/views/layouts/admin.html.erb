@@ -10,7 +10,9 @@
   </head>
 
   <body class="h-screen overflow-y-hidden">
+    <%= render "notifications/notices" %>
     <%= render_component "navigation/admin_navbar", current_user: Current.user %>
+
     <%= yield %>
   </body>
 </html>

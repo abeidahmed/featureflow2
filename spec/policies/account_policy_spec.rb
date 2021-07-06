@@ -26,7 +26,7 @@ RSpec.describe AccountPolicy, type: :policy do
 
     let(:collaborator) { create(:collaborator, :owner) }
 
-    it { is_expected.to permit_actions(%i[destroy]) }
+    it { is_expected.to permit_actions(%i[update destroy]) }
   end
 
   context "when being an editor" do
@@ -34,7 +34,7 @@ RSpec.describe AccountPolicy, type: :policy do
 
     let(:collaborator) { create(:collaborator) }
 
-    it { is_expected.to forbid_actions(%i[destroy]) }
+    it { is_expected.to forbid_actions(%i[update destroy]) }
   end
 
   context "when being a pending collaborator" do
@@ -42,6 +42,6 @@ RSpec.describe AccountPolicy, type: :policy do
 
     let(:collaborator) { create(:collaborator, :pending, :owner) }
 
-    it { is_expected.to forbid_actions(%i[destroy]) }
+    it { is_expected.to forbid_actions(%i[update destroy]) }
   end
 end

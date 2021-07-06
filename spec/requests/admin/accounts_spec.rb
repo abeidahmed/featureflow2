@@ -53,6 +53,36 @@ RSpec.describe "Admin::Accounts", type: :request do
     end
   end
 
+  describe "#update" do
+    let(:user) { create(:user) }
+    let(:account) { create(:account) }
+
+    before do
+      switch_account(account)
+      sign_in(user)
+      create(:collaborator, :owner, user: user, account: account)
+    end
+
+    context "when the request is valid" do
+      it "updates the account" do
+        patch accounts_path, params: { account: { name: "Deal breaker", cname: "deal-breaker.example.com" } }
+
+        account.reload
+        expect(account.name).to eq("Deal breaker")
+        expect(account.cname).to eq("deal-breaker.example.com")
+      end
+    end
+
+    context "when the request is invalid" do
+      it "returns an error" do
+        patch accounts_path, params: { account: { name: "" } }
+
+        expect(json.dig(:errors, :name)).to be_present
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
+
   describe "#destroy" do
     let(:user) { create(:user) }
     let(:account) { create(:account) }

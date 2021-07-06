@@ -1,0 +1,7 @@
+<div id="notices">
+  <% flash.to_hash.with_indifferent_access.each do |type, flash_hash| %>
+    <% unless flash_hash[:banner] %>
+      <%= render_component "toast", message: flash_hash[:message], variant: type %>
+    <% end %>
+  <% end %>
+</div>

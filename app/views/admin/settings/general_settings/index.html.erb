@@ -4,17 +4,24 @@
       <% c.heading { "Account general settings" } %>
     <% end %>
 
-    <form action="#" class="max-w-sm w-full">
+    <%= form_with model: Current.account,
+      url: accounts_path,
+      method: :patch,
+      data: { controller: "hotwire", action: "turbo:submit-end->hotwire#onSubmit" },
+      class: "max-w-sm w-full" do |f|
+    %>
       <div class="form-group">
-        <label>Account name</label>
+        <%= f.label :name, "Account name" %>
 
         <div class="flex items-center">
-          <input type="text" value="Example account" name="" id="" class="form-control" />
+          <%= f.text_field :name, class: "form-control", autocomplete: "off", required: true %>
 
-          <button class="btn ml-3">Rename</button>
+          <%= f.submit "Rename", class: "btn ml-3" %>
         </div>
+
+        <%= render_component "form/error", error_field: :name %>
       </div>
-    </form>
+    <% end %>
   </section>
 
   <section class="section">

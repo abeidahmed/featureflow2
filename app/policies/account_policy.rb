@@ -3,7 +3,11 @@ class AccountPolicy < ApplicationPolicy
     user
   end
 
-  def destroy?
+  def update?
     user.invite_accepted?(record) && user.account_owner?(record)
+  end
+
+  def destroy?
+    update?
   end
 end

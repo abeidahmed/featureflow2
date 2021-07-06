@@ -7,7 +7,7 @@ module Admin
     end
 
     def create
-      account = Account.new(account_params)
+      account = Account.new(new_account_params)
       authorize account
       account.creator = Current.user
 
@@ -16,6 +16,19 @@ module Admin
         redirect_to dashboard_path(script_name: "/#{account.id}")
       else
         render json: { errors: account.errors }, status: :unprocessable_entity
+      end
+    end
+
+    def update
+      authorize Current.account
+
+      if Current.account.update(edit_account_params)
+        respond_to do |format|
+          format.html { redirect_back fallback_location: setting_root_path }
+          format.turbo_stream
+        end
+      else
+        render json: { errors: Current.account.errors }, status: :unprocessable_entity
       end
     end
 
@@ -28,8 +41,12 @@ module Admin
 
     private
 
-    def account_params
+    def new_account_params
       params.require(:account).permit(:name, :subdomain)
+    end
+
+    def edit_account_params
+      params.require(:account).permit(:name, :cname)
     end
   end
 end

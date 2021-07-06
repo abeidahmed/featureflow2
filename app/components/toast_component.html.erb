@@ -1,0 +1,13 @@
+<div data-controller="toast" class="toast toast--<%= variant %>" role="alert">
+  <div class="toast-details">
+    <span class="toast-icon">
+      <%= render_svg flash_icon, variant: "solid" %>
+    </span>
+
+    <p class="toast-content"><%= message %></p>
+  </div>
+
+  <button type="button" data-action="toast#hide" class="toast-dismiss-btn" aria-label="Dismiss notification">
+    <%= render_svg "close" %>
+  </button>
+</div>
