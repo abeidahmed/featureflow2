@@ -51,4 +51,44 @@ RSpec.describe Collaborator, type: :model do
       expect(described_class.alphabetically.includes(:user).ids).to eq([collaborator2.id, collaborator1.id])
     end
   end
+
+  describe "#unrevokable?" do
+    let(:account) { create(:account) }
+    let(:user) { create(:user) }
+
+    before do
+      Current.user = user
+    end
+
+    after do
+      Current.user = nil
+    end
+
+    context "when being the owner" do
+      it "returns true if sole owner" do
+        collaborator = create(:collaborator, :owner, user: user, account: account)
+
+        collaborator.reload
+        expect(collaborator.unrevokable?).to eq(true)
+      end
+
+      it "returns false if multiple owners" do
+        create(:collaborator, :owner, account: account)
+        collaborator = create(:collaborator, :owner, user: user, account: account)
+
+        collaborator.reload
+        expect(collaborator.unrevokable?).to eq(false)
+      end
+    end
+
+    context "when being an editor" do
+      it "returns false" do
+        create(:collaborator, :owner, account: account)
+        collaborator = create(:collaborator, user: user, account: account)
+
+        collaborator.reload
+        expect(collaborator.unrevokable?).to eq(false)
+      end
+    end
+  end
 end

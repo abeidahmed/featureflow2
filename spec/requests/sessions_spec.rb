@@ -12,6 +12,7 @@ RSpec.describe "Sessions", type: :request do
         post sessions_path, params: { email: user.email, password: user.password }
 
         expect(signed_cookie[:auth_token]).to eq(user.auth_token)
+        expect(response).to redirect_to(accounts_path(script_name: nil))
       end
     end
 

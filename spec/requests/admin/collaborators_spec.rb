@@ -31,4 +31,56 @@ RSpec.describe "Admin::Collaborators", type: :request do
       end
     end
   end
+
+  describe "#update" do
+    before do
+      create(:collaborator, :owner, user: user, account: account)
+    end
+
+    context "when the collaborator is owner" do
+      it "gets demoted to editor" do
+        owner = create(:collaborator, :owner, account: account)
+        patch collaborator_path(owner)
+
+        owner.reload
+        expect(owner.role).to eq("editor")
+      end
+    end
+
+    context "when the collaborator is editor" do
+      it "gets promoted to owner" do
+        editor = create(:collaborator, account: account)
+        patch collaborator_path(editor)
+
+        editor.reload
+        expect(editor.role).to eq("owner")
+      end
+    end
+  end
+
+  describe "#destroy" do
+    context "when there is only one owner in the team" do
+      it "does not remove the current owner" do
+        collaborator = create(:collaborator, :owner, user: user, account: account)
+        create(:collaborator, account: account)
+
+        expect do
+          delete collaborator_path(collaborator)
+        end.not_to change { account.collaborators.count }
+
+        expect(response).to have_http_status(:forbidden)
+      end
+    end
+
+    context "when request is valid" do
+      it "removes the user" do
+        collaborator = create(:collaborator, user: user, account: account)
+        create(:collaborator, :owner, account: account)
+
+        expect do
+          delete collaborator_path(collaborator)
+        end.to change { account.collaborators.count }.by(-1)
+      end
+    end
+  end
 end

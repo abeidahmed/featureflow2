@@ -4,7 +4,7 @@ RSpec.describe "AcceptingAccountInvitations", type: :feature do
   let(:account) { create(:account) }
 
   before do
-    Capybara.app_host = "http://app.example.com/#{account.id}"
+    switch_account(account)
   end
 
   context "when being a new user of Feature Flow" do

@@ -21,7 +21,7 @@ module Admin
     def affirm_collaborator
       return if Current.user.invite_accepted?(Current.account)
 
-      redirect_to invitation_path(invitation_token, script_name: "/#{Current.account}")
+      redirect_to invitation_path(invitation_token, script_name: "/#{Current.account.id}")
     end
 
     def invitation_token

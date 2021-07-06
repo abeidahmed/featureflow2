@@ -1,0 +1,20 @@
+<div data-lazy-target="htmlResponse" class="box-header">
+  <h2 class="box-title">Remove <%= @collaborator.name %>?</h2>
+
+  <button type="button" data-action="details#hide" class="box-close-btn"><%= render_svg "close" %></button>
+</div>
+
+<div class="box-body">
+  <p>
+    Are you sure you want to <span class="text-highlight">remove <%= @collaborator.name %></span> from the team?
+    <%= @collaborator.name %> will no longer have access to this account unless and until someone invites again.
+  </p>
+</div>
+
+<div class="box-footer flex items-center justify-end">
+  <button data-action="details#hide" class="btn">Cancel</button>
+
+  <%= form_with url: collaborator_path(@collaborator), method: :delete, class: "ml-3" do |f| %>
+    <%= f.submit "Remove", class: "btn btn--danger" %>
+  <% end %>
+</div>
