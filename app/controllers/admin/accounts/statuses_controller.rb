@@ -6,11 +6,13 @@ module Admin
 
         if Current.account.active?
           Current.account.inactive!
+          flash[:success] = { message: "Account deactivated" }
         else
           Current.account.active!
+          flash[:success] = { message: "Account activated" }
         end
 
-        redirect_to setting_root_path, success: { message: "Account deactivated" }
+        redirect_to setting_root_path
       end
     end
   end
