@@ -13,7 +13,10 @@ Rails.application.routes.draw do
 
       resources :onboardings, only: %i[new]
       resources :accounts, only: %i[index create]
-      resource :accounts, only: %i[update destroy]
+
+      resource :accounts, only: %i[update destroy], as: :account do
+        resource :statuses, only: %i[update], module: :accounts
+      end
 
       resources :collaborators, only: %i[create update destroy] do
         resource :revocations, only: %i[show], module: :collaborators
