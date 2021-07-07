@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 
       resources :onboardings, only: %i[new]
       resources :accounts, only: %i[index create]
+      resources :stages, only: %i[create]
+
+      get "/roadmap", to: "stages#index"
 
       resource :accounts, only: %i[update destroy], as: :account do
         resource :statuses, only: %i[update], module: :accounts

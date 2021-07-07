@@ -8,7 +8,7 @@
       <nav class="navbar-nav">
         <%= active_link_to "Requested features", dashboard_path, class: "navbar-item", active: :exclusive %>
 
-        <a href="#" class="navbar-item">Roadmap</a>
+        <%= active_link_to "Roadmap", roadmap_path, class: "navbar-item" %>
 
         <%= active_link_to "Settings", setting_root_path, class: "navbar-item" %>
       </nav>
