@@ -13,4 +13,12 @@ class ApplicationComponent < ViewComponent::Base
   def call
     content_tag(@tag, content, class: @classes, **@options) if @tag
   end
+
+  def fetch_or_fallback(allowed_values, given_value:, fallback: nil)
+    if allowed_values.include?(given_value)
+      given_value
+    else
+      fallback
+    end
+  end
 end

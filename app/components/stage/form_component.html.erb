@@ -1,0 +1,58 @@
+<%= form_with **@options,
+  data: {
+    controller: "hotwire",
+    action: "turbo:submit-end->hotwire#onSubmit turbo:submit-end->details#hideAfterSuccess",
+    form_reset: true
+  } do |f|
+%>
+  <div class="box-header">
+    <h2 class="h5">Add a new stage</h2>
+
+    <button type="button" class="box-close-btn" data-action="details#hide">
+      <%= render_svg "close" %>
+    </button>
+  </div>
+
+  <div class="box-body">
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, data: { focus_target: "focusable" }, class: "form-control", placeholder: "Your stage title", autocomplete: "off" %>
+
+      <%= render_component "form/error", error_field: :name %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :color %>
+
+      <div data-controller="color-picker" data-color-picker-default-value="#24292e" class="relative">
+        <%= f.text_field :color, data: { color_picker_target: "input" }, class: "form-control", autocomplete: "off" %>
+
+        <%= render_component "form/error", error_field: :color %>
+
+        <%= render_component "popover", data: { color_picker_target: "palette" }, hidden: "" do |c| %>
+          <% c.body do %>
+            <h4 class="h7 text-gray">Choose a default color</h4>
+
+            <div class="color-picker mt-2">
+              <% DEFAULT_PALETTE.each do |color| %>
+                <button
+                  type="button"
+                  value=<%= color %>
+                  data-action="color-picker#selectColor"
+                  class="color-picker-color"
+                  style="background-color: <%= color %>"
+                ></button>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="box-footer flex items-center justify-end">
+    <button type="button" data-action="details#hide" class="btn">Cancel</button>
+
+    <%= f.submit class: "btn btn--primary ml-3" %>
+  </div>
+<% end %>

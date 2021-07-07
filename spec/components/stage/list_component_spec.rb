@@ -1,13 +1,11 @@
 require "rails_helper"
 
 RSpec.describe Stage::ListComponent, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "renders the name" do
+    stage = create(:stage)
+    render_inline(described_class.new(stage: stage))
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+    expect(rendered_component).to have_selector("h2", text: stage.name)
+    expect(rendered_component).to match(/style="color: #{stage.color};"/)
+  end
 end

@@ -14,7 +14,7 @@ RSpec.describe "Admin::Stages", type: :request do
     context "when the request is valid" do
       it "creates a stage" do
         expect do
-          post stages_path, params: { stage: { name: "Completed" } }
+          post stages_path, params: { stage: { name: "Completed" }, format: :turbo_stream }
         end.to change { account.stages.count }.by(1)
 
         expect(account.stages.first.color).to be_present

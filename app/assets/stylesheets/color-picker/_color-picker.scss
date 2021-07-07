@@ -1,0 +1,13 @@
+.color-picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.color-picker-color {
+  width: $spacer-6;
+  height: $spacer-6;
+  border-radius: 4px;
+  border: 0;
+}

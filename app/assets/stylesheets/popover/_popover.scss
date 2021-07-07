@@ -1,0 +1,184 @@
+.popover {
+  position: absolute;
+  z-index: 100;
+}
+
+.popover-message {
+  position: relative;
+  width: 256px;
+  margin-right: auto;
+  margin-left: auto;
+
+  // Carets
+  &::before,
+  &::after {
+    position: absolute;
+    left: 50%;
+    display: inline-block;
+    content: "";
+  }
+
+  &::before {
+    top: -$spacer-4; // changed
+    margin-left: -9px;
+    border: $spacer-2 $border-style transparent;
+    border-bottom-color: $border-gray;
+  }
+
+  &::after {
+    top: -14px;
+    margin-left: -$spacer-2;
+    border: 7px $border-style transparent;
+    border-bottom-color: $bg-white;
+  }
+
+  &.Box {
+    background-color: $bg-white;
+  }
+}
+
+// Bottom-oriented carets
+.popover-message--bottom,
+.popover-message--bottom-right,
+.popover-message--bottom-left {
+  &::before,
+  &::after {
+    top: auto;
+    border-bottom-color: transparent;
+  }
+
+  &::before {
+    bottom: -$spacer-4; // changed
+    border-top-color: $border-gray;
+  }
+
+  &::after {
+    bottom: -14px;
+    border-top-color: $border-gray;
+  }
+}
+
+// Top & Bottom: Right-oriented carets
+.popover-message--top-right,
+.popover-message--bottom-right {
+  right: -9px;
+  margin-right: 0;
+
+  &::before,
+  &::after {
+    left: auto;
+    margin-left: 0;
+  }
+
+  &::before {
+    right: $spacer-5; // chaned
+  }
+
+  &::after {
+    right: 21px;
+  }
+}
+
+// Top & Bottom: Left-oriented carets
+.popover-message--top-left,
+.popover-message--bottom-left {
+  left: -9px;
+  margin-left: 0;
+
+  &::before,
+  &::after {
+    left: $spacer-6; // changed
+    margin-left: 0;
+  }
+
+  &::after {
+    left: $spacer-6 + 1; // changed
+  }
+}
+
+// Right- & Left-oriented carets
+.popover-message--right,
+.popover-message--right-top,
+.popover-message--right-bottom,
+.popover-message--left,
+.popover-message--left-top,
+.popover-message--left-bottom {
+  &::before,
+  &::after {
+    top: 50%;
+    left: auto;
+    margin-left: 0;
+    border-bottom-color: transparent;
+  }
+
+  &::before {
+    // stylelint-disable-next-line primer/spacing
+    margin-top: -($spacer-2 + 1);
+  }
+
+  &::after {
+    margin-top: -$spacer-2;
+  }
+}
+
+// Right-oriented carets
+.popover-message--right,
+.popover-message--right-top,
+.popover-message--right-bottom {
+  &::before {
+    right: -$spacer-4; // changed
+    border-left-color: $border-gray;
+  }
+
+  &::after {
+    right: -14px;
+    border-left-color: $border-gray;
+  }
+}
+
+// Left-oriented carets
+.popover-message--left,
+.popover-message--left-top,
+.popover-message--left-bottom {
+  &::before {
+    left: -$spacer-4; // changed
+    border-right-color: $border-gray;
+  }
+
+  &::after {
+    left: -14px;
+    border-right-color: $border-gray;
+  }
+}
+
+// Right & Left: Top-oriented carets
+.popover-message--right-top,
+.popover-message--left-top {
+  &::before,
+  &::after {
+    top: $spacer-6; // changed
+  }
+}
+
+// Right & Left: Bottom-oriented carets
+.popover-message--right-bottom,
+.popover-message--left-bottom {
+  &::before,
+  &::after {
+    top: auto;
+  }
+
+  &::before {
+    bottom: $spacer-4; // changed
+  }
+
+  &::after {
+    bottom: $spacer-4 + 1; // changed
+  }
+}
+
+.popover-message--large {
+  @include breakpoint(sm) {
+    min-width: 320px;
+  }
+}
