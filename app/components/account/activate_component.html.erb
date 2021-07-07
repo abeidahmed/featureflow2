@@ -1,0 +1,13 @@
+<section class="section">
+  <%= render_component "subhead" do |c| %>
+    <% c.heading { "Activate your account" } %>
+
+    <% c.description(tag: "p") do %>
+      Your account is deactivated. If you ever need to activate it, press the button below.
+    <% end %>
+  <% end %>
+
+  <%= form_with url: account_statuses_path, method: :patch do |f| %>
+    <%= f.submit "Activate account", class: "btn" %>
+  <% end %>
+</section>

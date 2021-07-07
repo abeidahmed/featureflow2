@@ -24,17 +24,7 @@
     <% end %>
   </section>
 
-  <section class="section">
-    <%= render_component "subhead" do |c| %>
-      <% c.heading { "Activate your account" } %>
-
-      <% c.description(tag: "p") do %>
-        Your account is deactivated. If you ever need to activate it, press the button below.
-      <% end %>
-    <% end %>
-
-    <button class="btn">Activate account</button>
-  </section>
+  <%= render_component "account/activate" %>
 
   <section class="section">
     <%= render_component "subhead" do |c| %>
@@ -44,15 +34,7 @@
     <div class="divide-y">
       <%= render_component "account/deactivate" %>
 
-      <div>
-        <h3 class="h6">Delete your account</h3>
-
-        <p class="mt-1">
-          This will permanently delete your account and will cancel your subscription too. Proceed with caution.
-        </p>
-
-        <button class="btn btn--danger-outline mt-3">Delete account</button>
-      </div>
+      <%= render_component "account/delete" %>
     </div>
   </section>
 <% end %>
