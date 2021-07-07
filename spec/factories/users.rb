@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :user, aliases: %i[creator] do
-    first_name { "John" }
+    first_name { "Jane" }
     last_name { "Doe" }
-    sequence(:email) { |n| "johndoe#{n}@example.com" }
+    sequence(:email) { |n| "janethebest#{n}@example.com" }
     password { "secretpassword" }
     sequence(:auth_token) { |n| "secret_token#{n}" }
     admin { false }
