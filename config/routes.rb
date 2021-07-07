@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
       resources :onboardings, only: %i[new]
       resources :accounts, only: %i[index create]
-      resources :stages, only: %i[create]
+      resources :stages, only: %i[create update]
 
       get "/roadmap", to: "stages#index"
 

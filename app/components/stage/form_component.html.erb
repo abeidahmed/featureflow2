@@ -6,7 +6,7 @@
   } do |f|
 %>
   <div class="box-header">
-    <h2 class="h5">Add a new stage</h2>
+    <h2 class="h5"><%= box_title %></h2>
 
     <button type="button" class="box-close-btn" data-action="details#hide">
       <%= render_svg "close" %>
@@ -35,13 +35,7 @@
 
             <div class="color-picker mt-2">
               <% DEFAULT_PALETTE.each do |color| %>
-                <button
-                  type="button"
-                  value=<%= color %>
-                  data-action="color-picker#selectColor"
-                  class="color-picker-color"
-                  style="background-color: <%= color %>"
-                ></button>
+                <button type="button" value=<%= color %> data-action="color-picker#selectColor" class="color-picker-color" style="background-color: <%= color %>"></button>
               <% end %>
             </div>
           <% end %>

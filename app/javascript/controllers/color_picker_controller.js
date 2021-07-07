@@ -22,6 +22,7 @@ export default class extends ApplicationController {
     ["click", "focus"].forEach((eventName) => {
       this.inputTarget.addEventListener(eventName, (event) => {
         this.paletteTarget.hidden = false;
+        this.initializeDefaultHex();
       });
     });
   }

@@ -8,5 +8,13 @@ class Stage
     def initialize(**options)
       @options = options
     end
+
+    def box_title
+      if @options[:model]&.persisted?
+        "Edit this stage"
+      else
+        "Add a new stage"
+      end
+    end
   end
 end
