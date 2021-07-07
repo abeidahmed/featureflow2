@@ -4,6 +4,7 @@ module Admin
 
     def index
       skip_policy_scope
+      @accounts = Account.where(collaborators: Current.user)
     end
 
     def create
