@@ -8,6 +8,7 @@ module Admin
           .includes(:user)
           .alphabetically
           .search(params[:query])
+          .limit(Collaborator::DEFAULT_LIMIT)
       end
     end
   end
