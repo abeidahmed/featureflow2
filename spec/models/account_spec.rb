@@ -8,6 +8,8 @@ RSpec.describe Account, type: :model do
 
     it { is_expected.to have_many(:users).through(:collaborators) }
 
+    it { is_expected.to have_many(:stages).dependent(:destroy) }
+
     it { is_expected.to belong_to(:creator).class_name("User").optional }
   end
 
