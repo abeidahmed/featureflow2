@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
       resource :accounts, only: %i[update destroy], as: :account do
         resource :statuses, only: %i[update], module: :accounts
+        resources :collaborators, only: %i[index], module: :accounts
       end
 
       resources :collaborators, only: %i[create update destroy] do

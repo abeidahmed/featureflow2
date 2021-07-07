@@ -6,7 +6,9 @@
 
     <div class="flex items-center justify-between">
       <div class="search-form max-w-sm w-full">
-        <input type="text" value="<%= params[:query] %>" class="form-control" placeholder="Search members by name, email...">
+        <remote-input src="<%= account_collaborators_path %>" data-target="collaborator-list">
+          <input type="text" value="<%= params[:query] %>" class="form-control" placeholder="Search members by name, email...">
+        </remote-input>
 
         <div class="search-form-icon"><%= render_svg "search" %></div>
       </div>

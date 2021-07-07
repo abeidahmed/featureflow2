@@ -14,6 +14,18 @@ class Collaborator < ApplicationRecord
 
   delegate :name, :email, to: :user
 
+  def self.search(query)
+    if query.present?
+      where(
+        "users.email iLIKE :query OR CONCAT_WS(
+          ' ', users.first_name, users.last_name
+        ) iLIKE :query", query: "%#{query}%"
+      ).references(:users)
+    else
+      all
+    end
+  end
+
   def invite_accepted?
     joined_at.present?
   end
