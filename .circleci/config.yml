@@ -96,7 +96,7 @@ jobs:
 
       - run:
           name: Set up DB
-          command: bundle exec rails db:drop db:prepare --trace
+          command: bundle exec rails db:drop db:create db:migrate --trace
 
       - run:
           name: Run tests
