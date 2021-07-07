@@ -8,7 +8,7 @@ class AccountMiddleware
     _, account_id, request_path = request.path.split("/", 3)
 
     if account_id =~ /\d+/
-      if account = Account.find_by(id: account_id) # rubocop:disable Style/GuardClause
+      if request.subdomains.last == "app" && account = Account.find_by(id: account_id) # rubocop:disable Style/GuardClause
         Current.account = account
       else
         return [302, { "Location" => "/not_found" }, []]
