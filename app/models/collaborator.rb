@@ -1,4 +1,6 @@
 class Collaborator < ApplicationRecord
+  DEFAULT_LIMIT = 16
+
   has_secure_token
 
   acts_as_tenant :account

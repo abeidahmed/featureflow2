@@ -1,0 +1,55 @@
+.pagy-nav {
+  display: flex;
+  align-items: center;
+
+  > * + * {
+    margin-left: $spacer;
+  }
+
+  .page a,
+  .page.active,
+  .page.disabled,
+  .gap {
+    padding: 5px $spacer-3;
+    font-style: normal;
+    display: inline-block;
+    line-height: $lh-default-px;
+    color: $text-gray-dark;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    border: $border-width $border-style transparent;
+    border-radius: $border-radius;
+    transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  }
+
+  .page a:hover {
+    text-decoration: none;
+    outline: none;
+    transition-duration: 0.1s;
+    border-color: $border-gray;
+  }
+
+  .page a:active {
+    transition: none;
+  }
+
+  .page.disabled {
+    color: $text-gray-light;
+    cursor: default;
+  }
+
+  .page.active {
+    background-color: $bg-gray;
+    border-color: transparent;
+    cursor: default;
+  }
+
+  .gap {
+    color: $text-gray-light;
+    cursor: default;
+    border-color: transparent;
+  }
+}

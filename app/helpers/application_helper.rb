@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def render_component(component_path, collection: nil, **options, &block)
     component_klass = "#{component_path.classify}Component".constantize
 
