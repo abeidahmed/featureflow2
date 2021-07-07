@@ -1,7 +1,7 @@
 module Admin
   class StagesController < ApplicationController
     def index
-      skip_policy_scope
+      @stages = policy_scope(Stage)
     end
 
     def create
@@ -9,7 +9,7 @@ module Admin
       @stage = Stage.new(stage_params)
 
       if @stage.save
-        redirect_to roadmap_path
+        respond_to { |format| format.turbo_stream }
       else
         render json: { errors: @stage.errors }, status: :unprocessable_entity
       end

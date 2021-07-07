@@ -1,0 +1,95 @@
+$stage-heading-height: 40px;
+
+.stage {
+  height: calc(100vh - 3 * #{$spacer-9} - #{$stage-heading-height});
+  display: flex;
+  flex-direction: column;
+  background-color: $gray-100;
+  flex-shrink: 0;
+}
+
+.stage-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $stage-heading-height;
+}
+
+.stage-feature {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding-left: $spacer-2;
+  padding-right: $spacer-2;
+  list-style: none;
+  height: 100%;
+}
+
+.stage-feature-list {
+  background-color: $white;
+  border-radius: $border-radius;
+  border: $border;
+  box-shadow: $shadow-xs;
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: $spacer-2;
+  max-width: 20rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.stage-feature-btn {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding: $spacer-2;
+  background-color: $bg-gray-light;
+  width: 100%;
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  font-weight: $font-weight-medium;
+  color: $text-gray;
+  transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  margin-top: auto;
+
+  .remix {
+    margin-right: $spacer;
+    color: $text-gray-light;
+  }
+
+  &:hover {
+    background-color: $bg-gray;
+  }
+}
+
+.roadmap-new-btn {
+  display: flex;
+  align-items: center;
+  padding: $spacer-2;
+  font-weight: $font-weight-medium;
+  transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  color: $text-gray;
+  text-align: left;
+  background-color: $bg-white;
+  border: $border;
+  border-radius: $border-radius;
+  box-shadow: $shadow-sm;
+  width: 100%;
+  height: max-content;
+  flex-shrink: 0;
+
+  .remix {
+    margin-right: $spacer;
+    color: $text-gray-light;
+  }
+
+  &:hover {
+    background-color: $bg-gray-light;
+  }
+
+  &:active {
+    background-color: #f2f1f1;
+    transition: none;
+  }
+}

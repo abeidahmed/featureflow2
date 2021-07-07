@@ -10,4 +10,10 @@ class StagePolicy < ApplicationPolicy
   def destroy?
     create?
   end
+
+  class Scope < Scope
+    def resolve
+      scope.all
+    end
+  end
 end

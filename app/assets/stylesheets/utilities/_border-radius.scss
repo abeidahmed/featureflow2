@@ -1,3 +1,8 @@
 .rounded-full {
   border-radius: 9999px !important;
 }
+
+.br-l {
+  border-top-left-radius: $border-radius !important;
+  border-bottom-left-radius: $border-radius !important;
+}

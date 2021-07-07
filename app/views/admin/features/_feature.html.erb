@@ -1,0 +1,74 @@
+<li class="stage-feature-list">
+  <details data-controller="details" class="flex-1 details-reset details-overlay details-overlay-dark">
+    <summary class="pl-2 py-2 leading-5 w-full">
+      Hello how are you?
+    </summary>
+
+    <div data-lazy-target="container" class="modal modal--lg box box--spacious box--overlay">
+      <div class="loader"></div>
+    </div>
+  </details>
+
+  <details class="dropdown details-reset details-overlay">
+    <summary class="btn-close px-2 py-1">
+      <%= render_svg "more" %>
+    </summary>
+
+    <ul class="dropdown-menu dropdown-menu--sw dropdown--lg">
+      <li>
+        <details data-controller="details" class="details-reset details-overlay details-overlay-dark">
+          <summary class="dropdown-item">
+            <%= render_svg "pencil" %>
+            Edit
+          </summary>
+
+          <div class="modal modal--lg box box--spacious box--overlay">
+            <div class="box-body">
+              Feature form
+            </div>
+          </div>
+        </details>
+      </li>
+
+      <li class="dropdown-separator"></li>
+
+      <li>
+        <details data-controller="details" class="details-reset details-overlay details-overlay-dark">
+          <summary class="dropdown-item">
+            <%= render_svg "go-back" %>
+            Unstage it
+          </summary>
+
+          <div class="modal box">
+            <div class="box-header">
+              <h2 class="box-title">
+                Unstage this feature request?
+              </h2>
+
+              <button type="button" class="box-close-btn" data-action="details#hide">
+                <%= render_svg "close" %>
+              </button>
+            </div>
+
+            <div class="box-body">
+              <p>
+                Are you sure you want to unstage this feature request? This will remove the feature request from this stage.
+              </p>
+
+              <p class="mt-2">
+                <span class="h6">Note:</span> You can always bring it back later by staging it from
+                the <%= link_to "requested features", dashboard_path %> page.
+              </p>
+            </div>
+
+            <div class="box-footer flex items-center justify-end">
+              <button type="button" data-action="details#hide" class="btn">Cancel</button>
+
+              <button type="submit" class="btn btn--danger ml-3">Unstage it</button>
+            </div>
+          </div>
+        </details>
+      </li>
+    </ul>
+  </details>
+</li>

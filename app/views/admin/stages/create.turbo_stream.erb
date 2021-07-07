@@ -1,0 +1,3 @@
+<%= turbo_stream.before "stage-new-form" do %>
+  <%= render_component "stage/list", stage: @stage %>
+<% end %>

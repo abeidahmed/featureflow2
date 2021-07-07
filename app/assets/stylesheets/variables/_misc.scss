@@ -7,6 +7,7 @@ $border: $border-width $border-style $border-gray;
 $border-radius: 6px;
 
 // box shadow
+$shadow-xs: 0 1px 1px 0 rgba($gray-900, 0.1);
 $shadow-sm: 0 1px 2px 0 rgba($gray-900, 0.1);
 $shadow-md: 0 4px 6px -1px rgba($gray-900, 0.1),
   0 2px 4px -1px rgba($gray-900, 0.06);

@@ -1,0 +1,46 @@
+<div class="content-wrapper">
+  <main class="main-content main-content--fluid pb-0">
+    <div class="flex flex-nowrap space-x-3">
+      <%= render_component "stage/list", collection: @stages %>
+
+      <div id="stage-new-form" data-controller="focus" class="max-w-xs w-full h-max-content flex-shrink-0 pr-9">
+        <details data-controller="details" class="details-reset details-overlay details-overlay-dark">
+          <summary data-action="click->focus#focusElement" class="roadmap-new-btn">
+            <%= render_svg "plus" %>
+            Add another stage
+          </summary>
+
+          <div class="modal box">
+            <%= form_with model: Stage.new do |f| %>
+              <div class="box-header">
+                <h2 class="h5">Add a new stage</h2>
+
+                <button type="button" class="box-close-btn" data-action="details#hide">
+                  <%= render_svg "close" %>
+                </button>
+              </div>
+
+              <div class="box-body">
+                <div class="form-group">
+                  <%= f.label :name %>
+                  <%= f.text_field :name, data: { focus_target: "focusable" }, class: "form-control", placeholder: "Your stage title", autocomplete: "off" %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :color %>
+                  <%= f.text_field :color, class: "form-control", autocomplete: "off" %>
+                </div>
+              </div>
+
+              <div class="box-footer flex items-center justify-end">
+                <button type="button" data-action="details#hide" class="btn">Cancel</button>
+
+                <%= f.submit class: "btn btn--primary ml-3" %>
+              </div>
+            <% end %>
+          </div>
+        </details>
+      </div>
+    </div>
+  </main>
+</div>
