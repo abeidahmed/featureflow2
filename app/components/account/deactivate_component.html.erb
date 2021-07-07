@@ -6,8 +6,8 @@
     <%= link_to "public feature requests", "#" %> page.
   </p>
 
-  <details data-controller="details" class="details details-reset details-overlay details-overlay-dark">
-    <summary class="btn btn--danger-outline mt-3">
+  <details data-controller="details focus" class="details details-reset details-overlay details-overlay-dark">
+    <summary data-action="click->focus#focusElement" class="btn btn--danger-outline mt-3">
       Deactivate account
     </summary>
 
@@ -40,7 +40,7 @@
             Please type <%= Current.account.name %> to continue
           </label>
 
-          <input type="text" data-confirmable-target="inputField" data-action="confirmable#verify" id="account-deactivate-confirm-field" class="form-control" />
+          <input type="text" data-confirmable-target="inputField" data-focus-target="focusable" data-action="confirmable#verify" id="account-deactivate-confirm-field" class="form-control" />
 
           <%= form_with url: account_statuses_path, method: :patch, class: "mt-3" do |f| %>
             <%= f.submit "I understand, deactivate this account",
