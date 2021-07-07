@@ -17,15 +17,23 @@
       <% end %>
     </div>
 
-    <form action="#" class="mt-6 max-w-sm w-full">
+    <%= form_with model: Current.account,
+      url: accounts_path,
+      method: :patch,
+      data: { controller: "hotwire", action: "turbo:submit-end->hotwire#onSubmit" },
+      class: "mt-6 max-w-sm w-full" do |f|
+    %>
       <div class="form-group">
-        <label>CNAME</label>
+        <%= f.label :cname, "CNAME" %>
 
         <div class="flex items-center">
-          <input type="text" value="" name="" id="" placeholder="Eg. subdomain.example.com" class="form-control" />
-          <button class="btn btn--primary ml-3">Save</button>
+          <%= f.text_field :cname, class: "form-control", placeholder: "Eg. subdomain.example.com", autocomplete: "off" %>
+
+          <%= f.submit "Save", class: "btn btn--primary ml-3" %>
         </div>
+
+        <%= render_component "form/error", error_field: :cname %>
       </div>
-    </form>
+    <% end %>
   </section>
 <% end %>

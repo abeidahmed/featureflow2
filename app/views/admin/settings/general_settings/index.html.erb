@@ -4,30 +4,27 @@
       <% c.heading { "Account general settings" } %>
     <% end %>
 
-    <form action="#" class="max-w-sm w-full">
+    <%= form_with model: Current.account,
+      url: accounts_path,
+      method: :patch,
+      data: { controller: "hotwire", action: "turbo:submit-end->hotwire#onSubmit" },
+      class: "max-w-sm w-full" do |f|
+    %>
       <div class="form-group">
-        <label>Account name</label>
+        <%= f.label :name, "Account name" %>
 
         <div class="flex items-center">
-          <input type="text" value="Example account" name="" id="" class="form-control" />
+          <%= f.text_field :name, class: "form-control", autocomplete: "off", required: true %>
 
-          <button class="btn ml-3">Rename</button>
+          <%= f.submit "Rename", class: "btn ml-3" %>
         </div>
+
+        <%= render_component "form/error", error_field: :name %>
       </div>
-    </form>
-  </section>
-
-  <section class="section">
-    <%= render_component "subhead" do |c| %>
-      <% c.heading { "Activate your account" } %>
-
-      <% c.description(tag: "p") do %>
-        Your account is deactivated. If you ever need to activate it, press the button below.
-      <% end %>
     <% end %>
-
-    <button class="btn">Activate account</button>
   </section>
+
+  <%= render_component "account/activate" %>
 
   <section class="section">
     <%= render_component "subhead" do |c| %>
@@ -35,26 +32,9 @@
     <% end %>
 
     <div class="divide-y">
-      <div>
-        <h3 class="h6">Deactivate your account</h3>
+      <%= render_component "account/deactivate" %>
 
-        <p class="mt-1">
-          This will immediately deactivate your account and will render a 404 for your
-          <%= link_to "public feature requests", "#" %> page.
-        </p>
-
-        <button class="btn btn--danger-outline mt-3">Deactivate account</button>
-      </div>
-
-      <div>
-        <h3 class="h6">Delete your account</h3>
-
-        <p class="mt-1">
-          This will permanently delete your account and will cancel your subscription too. Proceed with caution.
-        </p>
-
-        <button class="btn btn--danger-outline mt-3">Delete account</button>
-      </div>
+      <%= render_component "account/delete" %>
     </div>
   </section>
 <% end %>

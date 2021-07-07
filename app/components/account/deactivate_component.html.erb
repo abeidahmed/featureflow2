@@ -1,0 +1,57 @@
+<div>
+  <h3 class="h6">Deactivate your account</h3>
+
+  <p class="mt-1">
+    This will immediately deactivate your account and will render a 404 for your
+    <%= link_to "public feature requests", "#" %> page.
+  </p>
+
+  <details data-controller="details focus" class="details details-reset details-overlay details-overlay-dark">
+    <summary data-action="click->focus#focusElement" class="btn btn--danger-outline mt-3">
+      Deactivate account
+    </summary>
+
+    <div class="modal box">
+      <div class="box-header">
+        <h2 class="box-title">Are you absolutely sure?</h2>
+
+        <button type="button" class="box-close-btn" data-action="details#hide">
+          <%= render_svg "close" %>
+        </button>
+      </div>
+
+      <div class="box-body">
+        <p>
+          This action will immediately deactivate your account and will <span class="text-highlight">render a 404</span>
+          for your public <%= link_to "feature requests page", "#" %>.
+        </p>
+
+        <p class="mt-2">
+          This will not change your billing plan. If you want to downgrade or cancel, you can do so in your
+          Settings &gt; Billing
+        </p>
+
+        <p class="mt-2">
+          Please type <strong class="h6"><%= Current.account.name %></strong> to continue.
+        </p>
+
+        <div data-controller="confirmable" data-confirmable-confirm-value="<%= Current.account.name %>" class="mt-2">
+          <label id="account-deactivate-confirm-field" class="sr-only">
+            Please type <%= Current.account.name %> to continue
+          </label>
+
+          <input type="text" data-confirmable-target="inputField" data-focus-target="focusable" data-action="confirmable#verify" id="account-deactivate-confirm-field" class="form-control" />
+
+          <%= form_with url: account_statuses_path, method: :patch, class: "mt-3" do |f| %>
+            <%= f.submit "I understand, deactivate this account",
+              data: {
+                confirmable_target: "submitBtn"
+              },
+              class: "btn btn--danger btn--block"
+            %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </details>
+</div>

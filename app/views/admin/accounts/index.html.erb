@@ -1,0 +1,7 @@
+<div class="content-wrapper bg-gray-light">
+  <main class="main-content main-content--constrained">
+    <% @accounts.each do |account| %>
+      <%= link_to account.name, dashboard_path(script_name: "/#{account.id}") %>
+    <% end %>
+  </main>
+</div>

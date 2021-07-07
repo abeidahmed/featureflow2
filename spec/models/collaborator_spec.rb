@@ -52,6 +52,22 @@ RSpec.describe Collaborator, type: :model do
     end
   end
 
+  describe ".search" do
+    it "filters the members by name" do
+      user = create(:user, name: "Jay Machis")
+      collaborator = create(:collaborator, user: user)
+
+      expect(described_class.includes(:user).search("Jay mach").ids).to match_array([collaborator.id])
+    end
+
+    it "filters the members by email" do
+      user = create(:user, email: "logoo@gmail.com")
+      collaborator = create(:collaborator, user: user)
+
+      expect(described_class.includes(:user).search("logoo").ids).to match_array([collaborator.id])
+    end
+  end
+
   describe "#unrevokable?" do
     let(:account) { create(:account) }
     let(:user) { create(:user) }

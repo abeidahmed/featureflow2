@@ -1,4 +1,6 @@
 class Collaborator < ApplicationRecord
+  DEFAULT_LIMIT = 16
+
   has_secure_token
 
   acts_as_tenant :account
@@ -13,6 +15,18 @@ class Collaborator < ApplicationRecord
   scope :alphabetically, -> { order("users.first_name": :asc).references(:user) }
 
   delegate :name, :email, to: :user
+
+  def self.search(query)
+    if query.present?
+      where(
+        "users.email iLIKE :query OR CONCAT_WS(
+          ' ', users.first_name, users.last_name
+        ) iLIKE :query", query: "%#{query}%"
+      ).references(:users)
+    else
+      all
+    end
+  end
 
   def invite_accepted?
     joined_at.present?

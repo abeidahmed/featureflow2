@@ -4,13 +4,13 @@ require:
 
 AllCops:
   Exclude:
-    - 'bin/**/*'
-    - 'db/schema.rb'
-    - 'db/migrate/*.rb'
-    - 'node_modules/**/*'
-    - 'tmp/**/*'
-    - 'vendor/**/*'
-    - 'Guardfile'
+    - "bin/**/*"
+    - "db/schema.rb"
+    - "db/migrate/*.rb"
+    - "node_modules/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - "Guardfile"
   DisplayStyleGuide: true
   ExtraDetails: true
   NewCops: enable
@@ -24,16 +24,19 @@ Bundler/OrderedGems:
 
 #################### Layout ###########################
 Layout/EmptyLinesAroundAttributeAccessor:
-  StyleGuide: '#empty-lines-around-attribute-accessor'
+  StyleGuide: "#empty-lines-around-attribute-accessor"
   Enabled: true
 
 Layout/LineLength:
   Exclude:
-    - 'spec/**/*'
+    - "spec/**/*"
 
 Layout/MultilineOperationIndentation:
   Enabled: true
   EnforcedStyle: indented
+
+Layout/LineEndStringConcatenationIndentation:
+  Enabled: false
 
 Layout/MultilineMethodCallIndentation:
   Enabled: true
@@ -48,16 +51,16 @@ Layout/FirstHashElementIndentation:
 #################### Lint ##################################
 
 Lint/AmbiguousBlockAssociation:
-  StyleGuide: '#syntax'
+  StyleGuide: "#syntax"
   Enabled: true
   Exclude:
-    - 'spec/**/*'
+    - "spec/**/*"
 
 Lint/MissingSuper:
   Enabled: true
   Exclude:
-    - 'app/components/**/*'
-    - 'app/presenters/**/*'
+    - "app/components/**/*"
+    - "app/presenters/**/*"
 
 Lint/DuplicateElsifCondition:
   Enabled: true
@@ -75,7 +78,7 @@ Lint/EmptyClass:
   Enabled: true
 
 Lint/FloatComparison:
-  StyleGuide: '#float-comparison'
+  StyleGuide: "#float-comparison"
   Enabled: true
 
 Lint/SelfAssignment:
@@ -95,33 +98,33 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Enabled: true
   Exclude:
-    - 'db/seeds.rb'
-    - 'Guardfile'
-    - 'spec/**/*'
-    - 'config/routes.rb'
+    - "db/seeds.rb"
+    - "Guardfile"
+    - "spec/**/*"
+    - "config/routes.rb"
 
 Metrics/ClassLength:
   Enabled: false
 
 Metrics/MethodLength:
-  StyleGuide: '#short-methods'
+  StyleGuide: "#short-methods"
   Enabled: false
 
 Metrics/ModuleLength:
   Enabled: false
 
 Metrics/ParameterLists:
-  StyleGuide: '#too-many-params'
+  StyleGuide: "#too-many-params"
   Enabled: false
 
 #################### Naming ##############################
 Naming/PredicateName:
-  StyleGuide: '#bool-methods-qmark'
+  StyleGuide: "#bool-methods-qmark"
   Enabled: true
   ForbiddenPrefixes:
     - is_
   Exclude:
-    - 'spec/**/*'
+    - "spec/**/*"
 
 #################### Style ###############################
 Style/Documentation:
@@ -131,21 +134,21 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 
 Style/HashAsLastArrayItem:
-  StyleGuide: '#hash-literal-as-last-array-item'
+  StyleGuide: "#hash-literal-as-last-array-item"
   Enabled: true
   EnforcedStyle: no_braces
 
 Style/HashSyntax:
-  StyleGuide: '#hash-literals'
+  StyleGuide: "#hash-literals"
   Enabled: true
   EnforcedStyle: ruby19_no_mixed_keys
 
 Style/RedundantFetchBlock:
-  Reference: 'https://github.com/JuanitoFatas/fast-ruby#hashfetch-with-argument-vs-hashfetch--block-code'
+  Reference: "https://github.com/JuanitoFatas/fast-ruby#hashfetch-with-argument-vs-hashfetch--block-code"
   Enabled: true
 
 Style/RedundantFileExtensionInRequire:
-  StyleGuide: '#no-explicit-rb-to-require'
+  StyleGuide: "#no-explicit-rb-to-require"
   Enabled: true
 
 Style/ReturnNil:
@@ -158,18 +161,18 @@ Style/ClassAndModuleChildren:
   Enabled: true
 
 Style/StringLiterals:
-  StyleGuide: '#consistent-string-literals'
+  StyleGuide: "#consistent-string-literals"
   Enabled: true
   EnforcedStyle: double_quotes
   ConsistentQuotesInMultiline: true
 
 Style/TrailingCommaInArguments:
-  StyleGuide: '#no-trailing-params-comma'
+  StyleGuide: "#no-trailing-params-comma"
   Enabled: true
   EnforcedStyleForMultiline: comma
 
 Style/TrailingCommaInArrayLiteral:
-  StyleGuide: '#no-trailing-array-commas'
+  StyleGuide: "#no-trailing-array-commas"
   Enabled: true
   EnforcedStyleForMultiline: comma
 
@@ -182,26 +185,26 @@ Style/RegexpLiteral:
 # Rails cops from rubocop-rails
 # https://github.com/rubocop-hq/rubocop-rails/blob/master/config/default.yml
 Rails/ActiveRecordCallbacksOrder:
-  StyleGuide: 'https://rails.rubystyle.guide/#callbacks-order'
+  StyleGuide: "https://rails.rubystyle.guide/#callbacks-order"
   Enabled: true
 
 Rails/DefaultScope:
-  StyleGuide: 'https://rails.rubystyle.guide#avoid-default-scope'
+  StyleGuide: "https://rails.rubystyle.guide#avoid-default-scope"
   Enabled: true
 
 Rails/FilePath:
   EnforcedStyle: slashes
 
 Rails/FindById:
-  StyleGuide: 'https://rails.rubystyle.guide/#find'
+  StyleGuide: "https://rails.rubystyle.guide/#find"
   Enabled: true
 
 Rails/Inquiry:
-  StyleGuide: 'https://rails.rubystyle.guide/#inquiry'
+  StyleGuide: "https://rails.rubystyle.guide/#inquiry"
   Enabled: true
 
 Rails/MailerName:
-  StyleGuide: 'https://rails.rubystyle.guide/#mailer-name'
+  StyleGuide: "https://rails.rubystyle.guide/#mailer-name"
   Enabled: true
 
 Rails/MatchRoute:
@@ -214,22 +217,22 @@ Rails/Pluck:
   Enabled: true
 
 Rails/PluckId:
-  StyleGuide: 'https://rails.rubystyle.guide/#ids'
+  StyleGuide: "https://rails.rubystyle.guide/#ids"
   Enabled: true
 
 Rails/PluckInWhere:
   Enabled: true
 
 Rails/RenderInline:
-  StyleGuide: 'https://rails.rubystyle.guide/#inline-rendering'
+  StyleGuide: "https://rails.rubystyle.guide/#inline-rendering"
   Enabled: true
 
 Rails/RenderPlainText:
-  StyleGuide: 'https://rails.rubystyle.guide/#plain-text-rendering'
+  StyleGuide: "https://rails.rubystyle.guide/#plain-text-rendering"
   Enabled: true
 
 Rails/ShortI18n:
-  StyleGuide: 'https://rails.rubystyle.guide/#short-i18n'
+  StyleGuide: "https://rails.rubystyle.guide/#short-i18n"
   Enabled: true
 
 Rails/SkipsModelValidations:
@@ -248,20 +251,20 @@ Rails/ContentTag:
 # https://github.com/rubocop-hq/rubocop-rspec/blob/master/config/default.yml
 RSpec/DescribeClass:
   Enabled: true
-  StyleGuide: 'https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/DescribeClass'
+  StyleGuide: "https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/DescribeClass"
   Exclude:
-    - 'spec/requests/**/*'
-    - 'spec/system/**/*'
-    - 'spec/tasks/**/*'
+    - "spec/requests/**/*"
+    - "spec/system/**/*"
+    - "spec/tasks/**/*"
 
 RSpec/DescribedClassModuleWrapping:
   Enabled: true
-  StyleGuide: 'https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/DescribedClassModuleWrapping'
+  StyleGuide: "https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/DescribedClassModuleWrapping"
 
 RSpec/ExampleLength:
   Enabled: true
   Max: 15
-  StyleGuide: 'https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/ExampleLength'
+  StyleGuide: "https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/ExampleLength"
 
 RSpec/PredicateMatcher:
   Enabled: false
@@ -272,9 +275,9 @@ RSpec/MessageExpectation:
 
 RSpec/MultipleMemoizedHelpers:
   Enabled: false
-  StyleGuide: 'https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/MultipleMemoizedHelpers'
+  StyleGuide: "https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/MultipleMemoizedHelpers"
 
 RSpec/MultipleExpectations:
   Enabled: true
   Max: 8
-  StyleGuide: 'https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/MultipleExpectations'
+  StyleGuide: "https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/MultipleExpectations"
