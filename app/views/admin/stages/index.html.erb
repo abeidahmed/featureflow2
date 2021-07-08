@@ -4,7 +4,7 @@
       <%= render_component "stage/list", collection: @stages %>
 
       <div id="stage-new-form" data-controller="focus" class="max-w-xs w-full h-max-content flex-shrink-0 pr-9">
-        <details data-controller="details" data-modal="true" class="details-reset details-overlay details-overlay-dark">
+        <details data-controller="details" class="details-reset details-overlay details-overlay-dark">
           <summary data-action="click->focus#focusElement" class="roadmap-new-btn">
             <%= render_svg "plus" %>
             Add another stage

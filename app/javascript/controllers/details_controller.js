@@ -30,7 +30,6 @@ export default class extends ApplicationController {
 
   toggle(event) {
     const details = event.currentTarget;
-    if (!details.hasAttribute("data-modal")) return;
 
     if (details.hasAttribute("open")) {
       details.addEventListener("keydown", keydown);
