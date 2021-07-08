@@ -17,7 +17,7 @@
 
       <div class="flex items-center">
         <% if policy(@collaborator).rolify? %>
-          <details data-controller="details lazy" data-lazy-url-value="<%= collaborator_roles_path(@collaborator) %>" class="details details-reset details-overlay details-overlay-dark">
+          <details data-controller="details lazy" data-modal="true" data-lazy-url-value="<%= collaborator_roles_path(@collaborator) %>" class="details-reset details-overlay details-overlay-dark">
             <summary data-action="click->lazy#fetch" class="f7 link--primary">
               <%= rolify_text %>
             </summary>
@@ -34,7 +34,7 @@
           <% if current_member? %>
             <%= link_to "Remove yourself", collaborator_revocations_path(@collaborator), class: "f7" %>
           <% else %>
-            <details data-controller="details lazy" data-lazy-url-value="<%= collaborator_removals_path(@collaborator) %>" class="details details-reset details-overlay details-overlay-dark">
+            <details data-controller="details lazy" data-modal="true" data-lazy-url-value="<%= collaborator_removals_path(@collaborator) %>" class="details details-reset details-overlay details-overlay-dark">
               <summary data-action="click->lazy#fetch" class="f7 link--primary">
                 Remove
               </summary>

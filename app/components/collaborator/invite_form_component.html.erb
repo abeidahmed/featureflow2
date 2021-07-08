@@ -1,4 +1,4 @@
-<details data-controller="details focus" class="details details-overlay details-overlay-dark">
+<details data-controller="details focus" data-modal="true" class="details details-overlay details-overlay-dark">
   <summary data-action="click->focus#focusElement" class="btn btn--primary">
     Invite a collaborator
   </summary>
@@ -8,8 +8,7 @@
       url: collaborators_path,
       data: {
         controller: "hotwire",
-        action: "turbo:submit-end->hotwire#onSubmit turbo:submit-end->details#hideAfterSuccess",
-        form_reset: "true"
+        action: "turbo:submit-end->hotwire#onSubmit turbo:submit-end->details#hideAfterSuccess"
       } do |f|
     %>
       <div class="box-header">

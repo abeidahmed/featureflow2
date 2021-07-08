@@ -1,8 +1,7 @@
 <%= form_with **@options,
   data: {
     controller: "hotwire",
-    action: "turbo:submit-end->hotwire#onSubmit turbo:submit-end->details#hideAfterSuccess",
-    form_reset: true
+    action: "turbo:submit-end->hotwire#onSubmit turbo:submit-end->details#hideAfterSuccess"
   } do |f|
 %>
   <div class="box-header">

@@ -8,18 +8,9 @@ export default class extends ApplicationController {
     const formData = await event.detail.formSubmission;
     const { success, fetchResponse } = formData.result;
 
-    if (success) {
-      this.resetForm();
-      return;
-    }
+    if (success) return;
 
     this.renderFormErrors(fetchResponse);
-  }
-
-  resetForm() {
-    if (this.element.hasAttribute("data-form-reset")) {
-      this.element.reset();
-    }
   }
 
   async renderFormErrors(fetchResponse) {
